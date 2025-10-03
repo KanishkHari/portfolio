@@ -4,21 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Me</title>
-  <nav>
-  <a href ="/index.html">Home</a>
-  <a href="/projects/index.html">Projects</a>
-  <a href ='/contact/index.html'>Contact</a>
-  <a href ='https://github.com/kanishkhari' target='_blank'>Github</a>
-  <a href="/resume/index.html"> Resume</a>
-</nav>
-  <h1> Contact</h1>
+  <link rel = 'stylesheet' href = '../style.css' />
 </head>
+<nav>
+    <a href ="/index.html">Home</a>
+    <a href="/projects/index.html">Projects</a>
+    <a href ='/contact/index.html'>Contact</a>
+    <a href ='https://github.com/kanishkhari' target='_blank'>Github</a>
+    <a href="/resume/index.html"> Resume</a>
+  </nav>
 <body>
+  <h1> Contact</h1>
   <p> You can reach me here!</p>
   <form action="mailto:kanishkhari0@gmail.com" method = "POST" enctype = "text/plain">
     <label>
       Your email:
-       <input type="'email" name = 'email'>
+       <input name="email" type = 'email'/>
     </label>
    <label>
     Subject:
@@ -26,9 +27,9 @@
    </label>
     <label>
       Message:
-      <textarea name = "body" rows = "5" cols = "16"> </textarea>
+      <textarea name = "body" rows = "10" cols = "25"> </textarea>
     </label>
-    <button> Submit</button>
+    <button>Submit</button>
   </form> 
 </body>
 
