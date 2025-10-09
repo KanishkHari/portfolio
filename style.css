@@ -1,6 +1,111 @@
+html {
+  --color-accent: oklch(56.282% 0.23404 308.953 / 0.768);  
+  accent-color: var(--color-accent);
+}
+
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS’s UI font as the website font
 	 */
   font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 4ch;
+}
+form input,
+form textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+nav ul,
+nav li {
+  display: contents;
+}
+nav {
+  display: flex;
+  margin-bottom:auto;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: oklch(80% 3% 200);
+  border-bottom: 1px solid oklch(80% 3% 200);
+  padding: 0.5ch;
+
+}
+nav a{
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+  font-weight: 700;
+}
+
+nav a.current{
+  border-bottom:0.4em solid oklch(80% 3% 200);
+  padding-bottom: 0.1em;
+}
+
+nav a:hover{
+  border-bottom:0.4em solid var(--color-accent);
+  padding-bottom: 0.1em;
+  background-color:oklch(95% 3% 200);
+}
+
+
+form{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+
+form label {
+  display: grid;
+  grid-template-columns:subgrid;
+  grid-column: 1/ -1;
+}
+
+form button{
+  grid-column: 1 / -1;     
+  width: 100%;             
+  box-sizing: border-box; 
+  padding: 0.75em 1em;
+}
+
+button:hover {
+  background-color: oklch(65.171% 0.16026 147.502 / 0.844);
+}
+.projects{
+  display: grid;  
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1.5em;       
+  margin: 2em 0;   
+}
+
+projects article {
+  display: grid;
+  grid-template-rows: subgrid; 
+  grid-row: span 3;            
+  gap: 1em;
+}
+
+.projects article h2 {
+  margin: 0;
+}
+
+.projects article img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+h1 {
+  font-size: 4em;           /* make page title much bigger than h2 */
+  line-height: 1.1;
+  text-wrap: balance;       /* prevent awkward line breaks */
+}
+
+h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+  margin: 0.5em 0;          /* space below headings */
 }
