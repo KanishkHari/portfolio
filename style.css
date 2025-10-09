@@ -176,3 +176,37 @@ hr {
   border-top: 1px solid oklch(80% 3% 200);
   margin: 0.5em 0;
 }
+
+.title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.title-row h3 {
+  margin: 0;
+}
+
+.dates {
+  font-style: normal; /* not italic */
+  color: #555;        /* subtle contrast */
+}
+
+.sub-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2px; /* small spacing under job title */
+}
+
+.company {
+  display: block;
+  font-style: normal; /* keep company non-italic */
+}
+
+.location {
+  display: block;
+  font-style: italic; /* make location italic */
+  color: #667;
+  
+}
