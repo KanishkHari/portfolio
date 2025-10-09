@@ -141,22 +141,6 @@ article > p:first-of-type {
   margin-bottom: 0.5em;
 }
 
-.meta {
-  display: flex;
-  flex-direction: column; /* stack dates and location */
-  align-items: flex-end;  /* right-align */
-  font-size: 0.9em;
-  margin-bottom: 0.5em;
-}
-
-.meta .dates {
-  font-style: normal;     /* dates NOT italic */
-}
-
-.meta .location {
-  font-style: italic;     /* location italic */
-}
-
 .contact-info {
   text-align: center;
   line-height: 1.5; /* optional, for spacing */
@@ -201,7 +185,7 @@ hr {
 
 .company {
   display: block;
-  font-style: normal; /* keep company non-italic */
+  font-style: italic; /* keep company non-italic */
 }
 
 .location {
@@ -209,4 +193,8 @@ hr {
   font-style: italic; /* make location italic */
   color: #667;
   
+}
+
+.degree {
+  font-style: normal;
 }
