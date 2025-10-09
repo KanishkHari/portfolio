@@ -138,19 +138,35 @@ article > p:first-of-type {
   display: flex;
   justify-content: flex-end;
   font-size: 0.9em;
-  font-style: italic;
   margin-bottom: 0.5em;
 }
 
 .meta {
+  display: flex;
+  flex-direction: column; /* stack dates and location */
+  align-items: flex-end;  /* right-align */
   font-size: 0.9em;
   margin-bottom: 0.5em;
 }
 
 .meta .dates {
-  font-style: normal;
+  font-style: normal;     /* dates NOT italic */
 }
 
 .meta .location {
-  font-style: italic;
+  font-style: italic;     /* location italic */
+}
+
+.contact-info {
+  text-align: center;
+  line-height: 1.5; /* optional, for spacing */
+}
+
+.contact-info a {
+  margin: 0 0.5em; /* space between links */
+  text-decoration: none;
+}
+
+.name{
+  text-align: center;
 }
