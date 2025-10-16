@@ -29,7 +29,7 @@ nav {
   border-bottom-color: oklch(80% 3% 200);
   border-bottom: 1px solid oklch(80% 3% 200);
   padding: 0.5ch;
-  color-scheme: light dark;
+  color-scheme: light dark; 
 }
 nav a{
   flex: 1;
