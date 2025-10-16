@@ -271,8 +271,8 @@ hr {
   */
   /* ========== Global styles ========== */
 :root {
-  --color-accent: oklch(71.879% 0.11156 60.523);
-  --color-border: oklch(60.388% 0.21386 31.009);
+  --color-accent: oklch(65.453% 0.25424 310.94);
+  --color-border: oklch(50.255% 0.15692 257.347);
   --color-button: oklch(82.859% 0.09298 153.65);
 }
 
