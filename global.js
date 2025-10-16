@@ -13,25 +13,25 @@ const pages = [
   { url: "/portfolio/Resume/index.html", label: "Resume" },
 ];
 
-const navHTML = `
-  <nav>
-    <ul>
-      ${pages
-        .map(
-          page =>
-            `<li><a href="${page.url}" ${page.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${page.label}</a></li>`
-        )
-        .join("")}
-    </ul>
-  </nav>
-`;
-
-// Step 3.2 + 3.3: Create and insert nav
 // const navHTML = `
 //   <nav>
-//     ${pages.map(page => `<a href="${page.url}">${page.label}</a>`).join("")}
+//     <ul>
+//       ${pages
+//         .map(
+//           page =>
+//             `<li><a href="${page.url}" ${page.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${page.label}</a></li>`
+//         )
+//         .join("")}
+//     </ul>
 //   </nav>
 // `;
+
+// Step 3.2 + 3.3: Create and insert nav
+const navHTML = `
+  <nav>
+    ${pages.map(page => `<a href="${page.url}">${page.label}</a>`).join("")}
+  </nav>
+`;
 
 document.querySelector("#site-header").innerHTML = navHTML;
 
