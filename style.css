@@ -198,3 +198,23 @@ hr {
 .degree {
   font-style: normal;
 }
+
+.color-scheme {
+  position: absolute;       /* takes it out of normal flow */
+  top: 1rem;                /* distance from top of page */
+  right: 1rem;              /* distance from right of page */
+  font-size: 0.8rem;        /* smaller font to reduce visual prominence */
+  font-family: inherit;     /* inherit from page */
+  z-index: 1000;            /* ensure it’s above other content */
+  background: transparent;  /* optional: remove default select background */
+}
+
+.color-scheme select {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  border: 1px solid var(--border-color);
+  background: canvas;       /* ensures theme-aware background */
+  color: canvastext;        /* ensures theme-aware text */
+}
