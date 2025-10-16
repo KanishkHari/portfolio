@@ -1,17 +1,14 @@
-html {
+/*html {
   accent-color: var(--color-accent);
 }
 
 :root {
-  --color-accent: oklch(58.565% 0.25528 313.932); /* main accent (warm orange tone) */
-  --color-border: oklch(67.144% 0.12828 232.712); /* cool gray border */
-  --color-button: oklch(82.859% 0.09298 153.65); /* send button on contact */
+  --color-accent: oklch(58.565% 0.25528 313.932); 
+  --color-border: oklch(67.144% 0.12828 232.712); 
+  --color-button: oklch(82.859% 0.09298 153.65); 
 }
 
 body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
   font: 100%/1.5 system-ui;
   max-width: 100ch;
   margin-inline: auto;
@@ -66,7 +63,7 @@ html[data-theme="dark"] nav a:focus {
   background-color: color-mix(in oklch, var(--color-accent), rgb(200, 104, 255) 85%);
 }
 
-/* Automatic/system preference: match light mode hover */
+
 html:not([data-theme]) nav a:hover,
 html:not([data-theme]) nav a:focus {
   background-color: color-mix(in oklch, var(--color-accent), white 85%);
@@ -113,13 +110,13 @@ html[data-theme="light"] .projects article {
   background-color: oklch(87.261% 0.05137 236.693);
 }
 
-/* Dark mode */
+
 html[data-theme="dark"] .projects article {
   border-color: #fff;
   background-color: oklch(25% 0.02 240);
 }
 
-/* Automatic/system preference */
+
 html:not([data-theme]) .projects article {
   border-color: #000;
   background-color: oklch(87.261% 0.05137 236.693);
@@ -132,7 +129,7 @@ html:not([data-theme]) .projects article {
 }
 
 
-/* Default (system preference) */
+
 html:not([data-theme]) .projects article {
   border-color: #000;
   background-color: oklch(87.261% 0.05137 236.693);
@@ -152,15 +149,15 @@ html:not([data-theme]) .projects article {
   display: block;
 }
 h1 {
-  font-size: 4em;           /* make page title much bigger than h2 */
+  font-size: 4em;           
   line-height: 1.1;
-  text-wrap: balance;       /* prevent awkward line breaks */
+  text-wrap: balance;      
 }
 
 h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
-  margin: 0.5em 0;          /* space below headings */
+  margin: 0.5em 0;          
 }
 
 section ul.skills {
@@ -196,11 +193,11 @@ article > p:first-of-type {
 
 .contact-info {
   text-align: center;
-  line-height: 1.5; /* optional, for spacing */
+  line-height: 1.5; 
 }
 
 .contact-info a {
-  margin: 0 0.5em; /* space between links */
+  margin: 0 0.5em; 
   text-decoration: none;
 }
 
@@ -225,25 +222,25 @@ hr {
 }
 
 .dates {
-  font-style: normal; /* not italic */
-  color: #555;        /* subtle contrast */
+  font-style: normal; 
+  color: #555;        
 }
 
 .sub-meta {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: 2px; /* small spacing under job title */
+  margin-top: 2px; 
 }
 
 .company {
   display: block;
-  font-style: italic; /* keep company non-italic */
+  font-style: italic; 
 }
 
 .location {
   display: block;
-  font-style: italic; /* make location italic */
+  font-style: italic; 
   color: #667;
   
 }
@@ -253,13 +250,13 @@ hr {
 }
 
 .color-scheme {
-  position: absolute;       /* takes it out of normal flow */
-  top: 1rem;                /* distance from top of page */
-  right: 1rem;              /* distance from right of page */
-  font-size: 0.8rem;        /* smaller font to reduce visual prominence */
-  font-family: inherit;     /* inherit from page */
-  z-index: 1000;            /* ensure it’s above other content */
-  background: transparent;  /* optional: remove default select background */
+  position: absolute;       
+  top: 1rem;                
+  right: 1rem;              
+  font-size: 0.8rem;        
+  font-family: inherit;     
+  z-index: 1000;            
+  background: transparent;  
 }
 
 .color-scheme select {
@@ -268,6 +265,375 @@ hr {
   padding: 0.2em 0.4em;
   border-radius: 0.25em;
   border: 1px solid var(--border-color);
-  background: canvas;       /* ensures theme-aware background */
-  color: canvastext;        /* ensures theme-aware text */
+  background: canvas;       
+  color: canvastext;        
+}
+  */
+  /* ========== Global styles ========== */
+:root {
+  --color-accent: oklch(71.879% 0.11156 60.523);
+  --color-border: oklch(60.388% 0.21386 31.009);
+  --color-button: oklch(82.859% 0.09298 153.65);
+}
+
+html {
+  accent-color: var(--color-accent);
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 1em;
+}
+
+/* ========== Theme Definitions ========== */
+html[data-theme="light"] {
+  background-color: #fafafa;
+  color: #111;
+}
+
+html[data-theme="dark"] {
+  background-color: #3f3d3d;
+  color: #e0dede;
+}
+
+/* System preference fallback */
+html:not([data-theme]) {
+  background-color: #fafafa;
+  color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    background-color: #3f3d3d;
+    color: #e0dede;
+  }
+}
+
+/* ========== Navigation Bar ========== */
+nav ul,
+nav li {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5em;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5em;
+  border-bottom: 0.4em solid transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  border-radius: 0.3em;
+  font-weight: 700;
+}
+
+nav a.current {
+  border-bottom-color: var(--color-border);
+  padding-bottom: 0.3em;
+  font-weight: 600;
+}
+
+/* Light mode hover */
+html[data-theme="light"] nav a:hover,
+html[data-theme="light"] nav a:focus {
+  border-bottom-color: var(--color-accent);
+  background-color: color-mix(in oklch, var(--color-accent), white 85%);
+}
+
+/* Dark mode hover */
+html[data-theme="dark"] nav a:hover,
+html[data-theme="dark"] nav a:focus {
+  border-bottom-color: var(--color-accent);
+  background-color: color-mix(in oklch, var(--color-accent), black 85%);
+}
+
+/* System preference hover */
+html:not([data-theme]) nav a:hover,
+html:not([data-theme]) nav a:focus {
+  border-bottom-color: var(--color-accent);
+  background-color: color-mix(in oklch, var(--color-accent), white 85%);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) nav a:hover,
+  html:not([data-theme]) nav a:focus {
+    background-color: color-mix(in oklch, var(--color-accent), black 85%);
+  }
+}
+
+/* ========== Forms ========== */
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+  max-width: 700px;
+  margin-top: 2em;
+}
+
+form label {
+  display: contents;
+  font-weight: 600;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 0.3em;
+  font: inherit;
+}
+
+form button {
+  grid-column: 1 / -1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75em 1em;
+  background-color: var(--color-button);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.3em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: oklch(65.171% 0.16026 147.502 / 0.844);
+}
+
+/* ========== Projects Grid ========== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1.5em;
+  margin: 2em 0;
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+  border: 1px solid;
+  border-radius: 0.5em;
+  padding: 1em;
+}
+
+/* Project article themes */
+html[data-theme="light"] .projects article,
+html:not([data-theme]) .projects article {
+  border-color: #000;
+  background-color: oklch(87.261% 0.05137 236.693);
+}
+
+html[data-theme="dark"] .projects article {
+  border-color: #fff;
+  background-color: oklch(25% 0.02 240);
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .projects article {
+    border-color: #fff;
+    background-color: oklch(25% 0.02 240);
+  }
+}
+
+.projects article h2 {
+  margin: 0;
+}
+
+.projects article img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.3em;
+}
+
+/* ========== Typography ========== */
+h1 {
+  font-size: 4em;
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-bottom: 0.5em;
+}
+
+h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+  margin: 0.5em 0;
+}
+
+.name {
+  text-align: center;
+}
+
+/* ========== CV/Resume Styles ========== */
+body > header {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+body > header h1 {
+  font-size: 3.5em;
+  margin-bottom: 0.2em;
+}
+
+body > header p {
+  margin: 0.2em 0;
+}
+
+body > section {
+  margin-bottom: 2em;
+}
+
+body > section h2 {
+  font-size: 2em;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 0.3em;
+  margin-bottom: 1em;
+}
+
+.job,
+.project,
+.education-item {
+  padding: 0.8em 0;
+  border-bottom: 1px solid currentColor;
+}
+
+.job:last-child,
+.project:last-child,
+.education-item:last-child {
+  border-bottom: none;
+}
+
+.title-row,
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.title-row h3,
+.header-row h3 {
+  margin: 0;
+}
+
+.dates,
+.header-row .right {
+  font-style: normal;
+  color: #555;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.sub-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2px;
+}
+
+.company,
+.location {
+  display: block;
+  font-style: italic;
+}
+
+.location {
+  color: #667;
+}
+
+.degree {
+  font-style: normal;
+}
+
+/* ========== Lists ========== */
+section ul.skills {
+  list-style: none;
+  padding-left: 0;
+}
+
+section ul.skills li {
+  margin-bottom: 0.25em;
+}
+
+section article ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+section article li {
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+/* ========== Contact Info ========== */
+.contact-info {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.contact-info a {
+  margin: 0 0.5em;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Theme Switcher ========== */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  z-index: 1000;
+}
+
+.color-scheme select {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  border: 1px solid var(--color-border);
+  background: canvas;
+  color: canvastext;
+}
+
+/* ========== Utility Classes ========== */
+hr {
+  border: none;
+  border-top: 1px solid oklch(80% 3% 200);
+  margin: 0.5em 0;
+}
+
+article > p:first-of-type {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+img {
+  display: block;
+  margin-top: 1em;
+  border-radius: 0.5em;
 }
