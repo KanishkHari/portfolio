@@ -66,6 +66,7 @@ html[data-theme="dark"] nav a:focus {
   background-color: color-mix(in oklch, var(--color-accent), black 85%);
 }
 
+/* Automatic/system preference: match dark mode hover */
 html:not([data-theme]) nav a:hover,
 html:not([data-theme]) nav a:focus {
   filter: brightness(1.1);
