@@ -12,3 +12,8 @@ const current = navLinks.find(link =>
 if (current) {
   current.classList.add("current");
 }
+
+
+let currentLink = navLinks.find(
+  (a) => a.host === location.host && a.pathname === location.pathname,
+);
