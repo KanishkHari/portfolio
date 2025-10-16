@@ -2,6 +2,12 @@ html {
   accent-color: var(--color-accent);
 }
 
+:root {
+  --color-accent: oklch(58.565% 0.25528 313.932); /* main accent (warm orange tone) */
+  --color-border: oklch(74.149% 0.15034 234.222); /* cool gray border */
+  --color-button: oklch(82.859% 0.09298 153.65); /* send button on contact */
+}
+
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS’s UI font as the website font
@@ -41,16 +47,30 @@ nav a{
 }
 
 nav a.current{
-  border-bottom:0.4em solid oklch(80% 3% 200);
+  border-bottom-color:var(--color-border);
   padding-bottom: 0.1em;
+  font-weight: 550;
 }
 
-nav a:hover{
-  border-bottom:0.4em solid var(--color-accent);
+nav a:hover,
+nav a:focus{
+  border-bottom-color: var(--color-accent);
   padding-bottom: 0.1em;
-  background-color:oklch(95% 3% 200);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
+
+html[data-theme="dark"] nav a:hover,
+html[data-theme="dark"] nav a:focus {
+  filter: brightness(1.1);
+  background-color: color-mix(in oklch, var(--color-accent), black 85%);
+}
+
+html:not([data-theme]) nav a:hover,
+html:not([data-theme]) nav a:focus {
+  filter: brightness(1.1);
+  background-color: color-mix(in oklch, var(--color-accent), black 85%);
+}
 
 form{
   display: grid;
