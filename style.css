@@ -4,6 +4,23 @@ html {
   accent-color: var(--color-accent);
 }
 
+:root {
+  --border-color: oklch(50% 10% 200 / 40%);
+  --hover-border: oklch(56.282% 0.23404 308.953 / 0.768);
+  --hover-bg: color-mix(in oklch, var(--hover-border), canvas 85%);
+  --button-hover: oklch(65.171% 0.16026 147.502 / 0.844);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --border-color: oklch(80% 0.05 200 / 60%);
+    --hover-border: oklch(70% 0.18 150 / 0.8);
+    --hover-bg: color-mix(in oklch, var(--hover-border), canvas 30%);
+    --button-hover: oklch(40% 0.1 150 / 0.9);
+  }
+}
+
+
 body {
   /* Set line height to 1.5 times the font size
 	   and use the OS’s UI font as the website font
