@@ -268,16 +268,6 @@ html[data-theme="dark"] {
   color: #e0dede;
 }
 
-html:not([data-theme]) {
-  @media (prefers-color-scheme: light) {
-    background-color: #fafafa;
-    color: #111;
-  }
-  @media (prefers-color-scheme: dark) {
-    background-color: #3f3d3d;
-    color: #e0dede;
-  }
-}
 
 .color-scheme {
   position: absolute;       /* takes it out of normal flow */
