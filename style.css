@@ -63,14 +63,13 @@ nav a:focus{
 html[data-theme="dark"] nav a:hover,
 html[data-theme="dark"] nav a:focus {
   filter: brightness(1.1);
-  background-color: color-mix(in oklch, var(--color-accent), rgb(178, 44, 255) 85%);
+  background-color: color-mix(in oklch, var(--color-accent), rgb(200, 104, 255) 85%);
 }
 
-/* Automatic/system preference: match dark mode hover */
+/* Automatic/system preference: match light mode hover */
 html:not([data-theme]) nav a:hover,
 html:not([data-theme]) nav a:focus {
-  filter: brightness(1.1);
-  background-color: color-mix(in oklch, var(--color-accent), rgb(226, 226, 226) 85%);
+  background-color: color-mix(in oklch, var(--color-accent), white 85%);
 }
 
 form{
