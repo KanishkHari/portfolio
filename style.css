@@ -20,6 +20,20 @@ html {
 }
 
 /* Light Mode */
+/* dark preference (system) */
+/* Automatic (system preference) */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --border-color: oklch(80% 0.05 200 / 60%);
+    --hover-border: oklch(70% 0.18 150 / 0.8);
+    --hover-bg: color-mix(in oklch, var(--hover-border), canvas 30%);
+    --button-hover: oklch(40% 0.1 150 / 0.9);
+    background-color: #3f3d3d;
+    color: #e0dede;
+  }
+}
+
+/* force light mode when manually selected */
 html[data-theme="light"] {
   --border-color: oklch(50% 10% 200 / 40%);
   --hover-border: oklch(56.282% 0.23404 308.953 / 0.768);
@@ -39,17 +53,7 @@ html[data-theme="dark"] {
   color: #e0dede;
 }
 
-/* Automatic (system preference) */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) {
-    --border-color: oklch(80% 0.05 200 / 60%);
-    --hover-border: oklch(70% 0.18 150 / 0.8);
-    --hover-bg: color-mix(in oklch, var(--hover-border), canvas 30%);
-    --button-hover: oklch(40% 0.1 150 / 0.9);
-    background-color: #3f3d3d;
-    color: #e0dede;
-  }
-}
+
 
 
 
