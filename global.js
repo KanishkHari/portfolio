@@ -1,11 +1,10 @@
 console.log("IT'S ALIVE!");
 
-// ===== Helper =====
-function $$(selector, context = document) {
+function $$(selector, context = document) { 
   return Array.from(context.querySelectorAll(selector));
 }
 
-// ===== Navigation =====
+// Step 3.1: Define pages
 const pages = [
   { url: "/portfolio/index.html", label: "Home" },
   { url: "/portfolio/projects/index.html", label: "Projects" },
@@ -14,31 +13,45 @@ const pages = [
   { url: "/portfolio/Resume/index.html", label: "Resume" },
 ];
 
+// const navHTML = `
+//   <nav>
+//     <ul>
+//       ${pages
+//         .map(
+//           page =>
+//             `<li><a href="${page.url}" ${page.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${page.label}</a></li>`
+//         )
+//         .join("")}
+//     </ul>
+//   </nav>
+// `;
+
+// Step 3.2 + 3.3: Create and insert nav
 const navHTML = `
   <nav>
-    ${pages.map(page => {
-      const target = page.external ? 'target="_blank"' : "";
-      return `<a href="${page.url}" ${target}>${page.label}</a>`;
-    }).join("")}
+    ${pages.map(page => `<a href="${page.url}">${page.label}</a>`).join("")}
   </nav>
 `;
 
 document.querySelector("#site-header").innerHTML = navHTML;
 
+// Step 2.2 + 2.3: Highlight current page
 const navLinks = $$("nav a");
+
 const currentLink = navLinks.find(
   a => a.host === location.host && a.pathname === location.pathname
 );
+
 currentLink?.classList.add("current");
 
-// ===== Theme Switcher =====
+
 document.body.insertAdjacentHTML(
   'afterbegin',
   `
   <label class="color-scheme">
     Theme:
     <select>
-      <option value="system">Automatic</option>
+      <option value="light dark">Automatic</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
     </select>
@@ -46,25 +59,21 @@ document.body.insertAdjacentHTML(
   `
 );
 
+
 const themeSelect = document.querySelector('.color-scheme select');
 
-// ---- Apply theme ----
-function setColorScheme(scheme) {
-  if (scheme === "system") {
-    document.documentElement.removeAttribute("data-theme");
-  } else {
-    document.documentElement.setAttribute("data-theme", scheme);
-  }
-  localStorage.setItem("theme", scheme);
-  themeSelect.value = scheme;
-}
-
-// ---- Load saved preference ----
-const savedTheme = localStorage.getItem("theme") || "system";
-setColorScheme(savedTheme);
-
-// ---- Listen for changes ----
-themeSelect.addEventListener("change", (e) => {
-  setColorScheme(e.target.value);
+themeSelect.addEventListener('change', (e) => {
+  document.documentElement.style.colorScheme = e.target.value;
 });
 
+
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  themeSelect.value = savedTheme;
+  document.documentElement.style.colorScheme = savedTheme;
+}
+// Save preference
+themeSelect.addEventListener('change', (e) => {
+  document.documentElement.style.colorScheme = e.target.value;
+  localStorage.setItem('theme', e.target.value);
+});
