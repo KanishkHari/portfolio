@@ -64,6 +64,7 @@ const savedTheme = localStorage.getItem("theme") || "system";
 setColorScheme(savedTheme);
 
 // ---- Listen for changes ----
-themeSelect.addEventListener("input", (e) => {
+themeSelect.addEventListener("change", (e) => {
   setColorScheme(e.target.value);
 });
+
