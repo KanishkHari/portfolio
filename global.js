@@ -43,3 +43,39 @@ const currentLink = navLinks.find(
 );
 
 currentLink?.classList.add("current");
+
+
+document.body.insertAdjacentHTML(
+  'afterbegin',
+  `
+  <label class="color-scheme">
+    Theme:
+    <select>
+      <option value="light dark">Automatic</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+  `
+);
+
+
+const themeSelect = document.querySelector('.color-scheme select');
+
+themeSelect.addEventListener('change', (e) => {
+  document.documentElement.style.colorScheme = e.target.value;
+});
+
+
+// Load preference
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+  themeSelect.value = savedTheme;
+  document.documentElement.style.colorScheme = savedTheme;
+}
+
+// Save preference
+themeSelect.addEventListener('change', (e) => {
+  document.documentElement.style.colorScheme = e.target.value;
+  localStorage.setItem('theme', e.target.value);
+});
