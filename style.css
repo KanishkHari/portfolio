@@ -272,7 +272,7 @@ hr {
   /* ========== Global styles ========== */
 :root {
   --color-accent: oklch(65.453% 0.25424 310.94);
-  --color-border: oklch(70.497% 0.15642 255.916);
+  --color-border: oklch(64.559% 0.19149 257.011);
   --color-button: oklch(47.559% 0.16141 142.403);
 }
 
@@ -483,29 +483,44 @@ h2, h3, h4, h5, h6 {
 }
 
 /* ========== CV/Resume Styles ========== */
-body > header {
-  text-align: center;
-  margin-bottom: 2em;
-}
+body > header { text-align: center; margin-bottom: 2em; }
+body > header h1 { font-size: 3.5em; margin-bottom: 0.2em; }
+body > header p { margin: 0.2em 0; }
+body > header a { text-decoration: none; }
+body > header a:hover { text-decoration: underline; }
 
-body > header h1 {
-  font-size: 3.5em;
-  margin-bottom: 0.2em;
-}
-
-body > header p {
-  margin: 0.2em 0;
-}
-
-body > section {
-  margin-bottom: 2em;
-}
-
+body > section { margin-bottom: 2em; }
 body > section h2 {
   font-size: 2em;
   border-bottom: 2px solid currentColor;
   padding-bottom: 0.3em;
   margin-bottom: 1em;
+}
+body > section article { margin-bottom: 1.5em; padding-left: 0.5em; }
+body > section article header h3 { font-size: 1.4em; margin: 0; }
+body > section article header p,
+body > section article header time { margin: 0.2em 0; font-size: 0.95em; }
+body > section article ul { margin: 0.5em 0 0 1.5em; padding: 0; list-style-type: disc; }
+
+.skills-category h3 { font-size: 1.2em; margin-bottom: 0.2em; }
+.skills-category p { margin: 0 0 0.8em 0; }
+
+.project header h3 { font-size: 1.3em; margin-bottom: 0.2em; }
+.project header p,
+.project header time { font-size: 0.95em; margin: 0.2em 0; }
+
+body > section article header .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 0.2em;
+}
+
+body > section article header .header-row .right {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: normal;
 }
 
 .job,
@@ -521,46 +536,36 @@ body > section h2 {
   border-bottom: none;
 }
 
-.title-row,
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
+body > section article a { text-decoration: none; }
+body > section article a:hover { text-decoration: underline; }
+
+/* ===== Light/Dark Mode Defaults for Body ===== */
+html {
+  font-family: system-ui, sans-serif;
 }
 
-.title-row h3,
-.header-row h3 {
-  margin: 0;
+html[data-theme="light"] {
+  background-color: #fafafa;
+  color: #282828;
 }
 
-.dates,
-.header-row .right {
-  font-style: normal;
-  color: #cccccc;
-  text-align: right;
-  white-space: nowrap;
+html[data-theme="dark"] {
+  background-color: #3f3d3d;
+  color: #e0dede;
 }
 
-.sub-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 2px;
+html:not([data-theme]) {
+  /* System preference fallback */
+  @media (prefers-color-scheme: light) {
+    background-color: #fafafa;
+    color: #111;
+  }
+  @media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    background-color: #121212;
+    color: #f3f3f3;
+  }
 }
-
-.company,
-.location {
-  display: block;
-  font-style: italic;
-}
-
-.location {
-  color: #cccccc;
-}
-
-.degree {
-  font-style: normal;
 }
 
 /* ========== Lists ========== */
