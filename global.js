@@ -62,11 +62,11 @@ if (savedTheme) {
 themeSelect.addEventListener('change', (e) => {
   const value = e.target.value;
   document.documentElement.style.colorScheme = value;
-  document.documentElement.classList.remove('light', 'dark');
-
+  document.documentElement.removeAttribute('data-theme');
   if (value === 'light' || value === 'dark') {
-    document.documentElement.classList.add(value);
+    document.documentElement.setAttribute('data-theme', value);
   }
+
 
   localStorage.setItem('theme', value);
 });
