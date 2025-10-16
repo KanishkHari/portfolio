@@ -537,7 +537,7 @@ body > section h2 {
 .dates,
 .header-row .right {
   font-style: normal;
-  color: #555;
+  color: #cccccc;
   text-align: right;
   white-space: nowrap;
 }
@@ -556,7 +556,7 @@ body > section h2 {
 }
 
 .location {
-  color: #667;
+  color: #cccccc;
 }
 
 .degree {
