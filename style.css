@@ -483,49 +483,34 @@ h2, h3, h4, h5, h6 {
 }
 
 /* ========== CV/Resume Styles ========== */
-body > header { text-align: center; margin-bottom: 2em; }
-body > header h1 { font-size: 3.5em; margin-bottom: 0.2em; }
-body > header p { margin: 0.2em 0; }
-body > header a { text-decoration: none; }
-body > header a:hover { text-decoration: underline; }
+body > header {
+  text-align: center;
+  margin-bottom: 2em;
+}
 
-body > section { margin-bottom: 2em; }
+body > header h1 {
+  font-size: 3.5em;
+  margin-bottom: 0.2em;
+}
+
+body > header p {
+  margin: 0.2em 0;
+}
+
+body > section {
+  margin-bottom: 2em;
+}
+
 body > section h2 {
   font-size: 2em;
   border-bottom: 2px solid currentColor;
   padding-bottom: 0.3em;
   margin-bottom: 1em;
 }
-body > section article { margin-bottom: 1.5em; padding-left: 0.5em; }
-body > section article header h3 { font-size: 1.4em; margin: 0; }
-body > section article header p,
-body > section article header time { margin: 0.2em 0; font-size: 0.95em; }
-body > section article ul { margin: 0.5em 0 0 1.5em; padding: 0; list-style-type: disc; }
-
-.skills-category h3 { font-size: 1.2em; margin-bottom: 0.2em; }
-.skills-category p { margin: 0 0 0.8em 0; }
-
-.project header h3 { font-size: 1.3em; margin-bottom: 0.2em; }
-.project header p,
-.project header time { font-size: 0.95em; margin: 0.2em 0; }
-
-body > section article header .header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  flex-wrap: wrap;
-  margin-bottom: 0.2em;
-}
-
-body > section article header .header-row .right {
-  text-align: right;
-  white-space: nowrap;
-  font-weight: normal;
-}
 
 .job,
 .project,
-.education-item {
+.education-item { 
   padding: 0.8em 0;
   border-bottom: 1px solid currentColor;
 }
@@ -536,9 +521,47 @@ body > section article header .header-row .right {
   border-bottom: none;
 }
 
-body > section article a { text-decoration: none; }
-body > section article a:hover { text-decoration: underline; }
+.title-row,
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
 
+.title-row h3,
+.header-row h3 {
+  margin: 0;
+}
+
+.dates,
+.header-row .right {
+  font-style: normal;
+  color: #555;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.sub-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 2px;
+}
+
+.company,
+.location {
+  display: block;
+  font-style: italic;
+}
+
+.location {
+  color: #667;
+}
+
+.degree {
+  font-style: normal;
+}
 
 /* ========== Lists ========== */
 section ul.skills {
