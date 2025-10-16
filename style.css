@@ -27,8 +27,9 @@ nav {
   margin-bottom:auto;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  border-bottom-color: oklch(80% 3% 200);
-  border-bottom: 1px solid oklch(80% 3% 200);
+  --border-color: oklch(50% 10% 200 / 40%);
+  border-bottom: 1px solid border-bottom-color: var(--border-color);
+
   padding: 0.5ch;
   color-scheme: light dark; 
 }
@@ -43,7 +44,8 @@ nav a{
 }
 
 nav a.current{
-  border-bottom:0.4em solid oklch(80% 3% 200);
+  border-bottom:0.4em solid border-bottom-color: var(--border-color);
+
   padding-bottom: 0.1em;
 }
 
