@@ -272,7 +272,7 @@ hr {
   /* ========== Global styles ========== */
 :root {
   --color-accent: oklch(65.453% 0.25424 310.94);
-  --color-border: oklch(50.255% 0.15692 257.347);
+  --color-border: oklch(70.497% 0.15642 255.916);
   --color-button: oklch(47.559% 0.16141 142.403);
 }
 
@@ -377,8 +377,9 @@ form {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1em;
-  max-width: 700px;
+  max-width: 900px;
   margin-top: 2em;
+  width: 100%
 }
 
 form label {
