@@ -60,6 +60,13 @@ if (savedTheme) {
   document.documentElement.style.colorScheme = savedTheme;
 }
 themeSelect.addEventListener('change', (e) => {
-  document.documentElement.style.colorScheme = e.target.value;
-  localStorage.setItem('theme', e.target.value);
+  const value = e.target.value;
+  document.documentElement.style.colorScheme = value;
+  document.documentElement.classList.remove('light', 'dark');
+
+  if (value === 'light' || value === 'dark') {
+    document.documentElement.classList.add(value);
+  }
+
+  localStorage.setItem('theme', value);
 });
