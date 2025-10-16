@@ -4,7 +4,7 @@ html {
 
 :root {
   --color-accent: oklch(58.565% 0.25528 313.932); /* main accent (warm orange tone) */
-  --color-border: oklch(74.149% 0.15034 234.222); /* cool gray border */
+  --color-border: oklch(67.144% 0.12828 232.712); /* cool gray border */
   --color-button: oklch(82.859% 0.09298 153.65); /* send button on contact */
 }
 
