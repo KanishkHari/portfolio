@@ -1,39 +1,66 @@
-console.log("IT'S ALIVE!");
+// global.js
+console.log("IT’S ALIVE!");
 
 // ===== Helper =====
 function $$(selector, context = document) {
   return Array.from(context.querySelectorAll(selector));
 }
 
-// ===== Navigation =====
+// ===== Step 3: Automatic Navigation Menu =====
+
+// Detect base path: local vs GitHub Pages
+const BASE_PATH =
+  location.hostname === "localhost" || location.hostname === "127.0.0.1"
+    ? "/" // Local dev
+    : "/portfolio/"; // Replace 'portfolio' with your GitHub Pages repo name
+
+// Define site pages
 const pages = [
-  { url: "/portfolio/index.html", label: "Home" },
-  { url: "/portfolio/projects/index.html", label: "Projects" },
-  { url: "/portfolio/contact/index.html", label: "Contact" },
-  { url: "https://github.com/kanishkhari", label: "GitHub", external: true },
-  { url: "/portfolio/Resume/index.html", label: "Resume" },
+  { url: "", title: "Home" },
+  { url: "projects/", title: "Projects" },
+  { url: "contact/", title: "Contact" },
+  { url: "https://github.com/KanishkHari", title: "Github" },
+  { url: "Resume/", title: "Resume" },
 ];
 
-const navHTML = `
-  <nav>
-    ${pages.map(page => {
-      const target = page.external ? 'target="_blank"' : "";
-      return `<a href="${page.url}" ${target}>${page.label}</a>`;
-    }).join("")}
-  </nav>
-`;
+// Create <nav> and add to top of <body>
+const nav = document.createElement("nav");
+document.body.prepend(nav);
 
-document.querySelector("#site-header").innerHTML = navHTML;
+// Build navigation links
+for (const p of pages) {
+  let url = p.url;
+  const title = p.title;
 
-const navLinks = $$("nav a");
-const currentLink = navLinks.find(
-  a => a.host === location.host && a.pathname === location.pathname
-);
-currentLink?.classList.add("current");
+  // Prefix internal links with BASE_PATH
+  if (!url.startsWith("http")) {
+    url = BASE_PATH + url;
+  }
 
-// ===== Theme Switcher =====
+  // Create <a> element
+  const a = document.createElement("a");
+  a.href = url;
+  a.textContent = title;
+
+  // Highlight the current page
+  a.classList.toggle(
+    "current",
+    a.host === location.host && a.pathname === location.pathname
+  );
+
+  // Open external links (like GitHub) in new tab
+  if (a.host !== location.host) {
+    a.target = "_blank";
+  }
+
+  // Add link to the nav
+  nav.append(a);
+}
+
+// ===== Step 4: Dark Mode / Theme Switcher =====
+
 document.body.insertAdjacentHTML(
-  'afterbegin',
+  "afterbegin",
   `
   <label class="color-scheme">
     Theme:
@@ -43,28 +70,34 @@ document.body.insertAdjacentHTML(
       <option value="dark">Dark</option>
     </select>
   </label>
-  `
+`
 );
 
-const themeSelect = document.querySelector('.color-scheme select');
+// 2️⃣ Get the select element
+const select = document.querySelector(".color-scheme select");
 
-// ---- Apply theme ----
+// 3️⃣ Function to apply the theme
 function setColorScheme(scheme) {
   if (scheme === "system") {
+    // Follow system preference
     document.documentElement.removeAttribute("data-theme");
   } else {
+    // Apply specific theme
     document.documentElement.setAttribute("data-theme", scheme);
   }
-  localStorage.setItem("theme", scheme);
-  themeSelect.value = scheme;
+
+  // Save the choice to localStorage
+  localStorage.setItem("colorScheme", scheme);
+
+  // Update dropdown
+  select.value = scheme;
 }
 
-// ---- Load saved preference ----
-const savedTheme = localStorage.getItem("theme") || "system";
-setColorScheme(savedTheme);
+// 4️⃣ Load saved preference from localStorage
+const savedScheme = localStorage.getItem("colorScheme") || "system";
+setColorScheme(savedScheme);
 
-// ---- Listen for changes ----
-themeSelect.addEventListener("change", (e) => {
-  setColorScheme(e.target.value);
+// 5️⃣ Listen for changes in dropdown
+select.addEventListener("input", (event) => {
+  setColorScheme(event.target.value);
 });
-
