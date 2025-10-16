@@ -200,3 +200,20 @@ hr {
   font-style: normal;
 }
 
+
+.color-scheme {
+  position: absolute;   /* remove from normal flow */
+  top: 1rem;            /* distance from the top */
+  right: 1rem;          /* distance from the right */
+  font-size: 0.8em;     /* make it a bit smaller */
+  font-family: inherit; /* use the same font as the page */
+  background: transparent; /* optional: remove default background */
+  z-index: 1000;        /* make sure it’s above other content */
+}
+
+.color-scheme select {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em; /* optional: rounded corners */
+}
