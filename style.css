@@ -1,277 +1,45 @@
-html {
-  color-scheme: light dark;
-  --color-accent: oklch(56.282% 0.23404 308.953 / 0.768);  
-  accent-color: var(--color-accent);
-}
-
-html {
-  color-scheme: light dark;
-  --color-accent: oklch(71.879% 0.11156 60.523);
-  accent-color: var(--color-accent);
-}
-
+/* ================= Global ================= */
 :root {
   /* Default/system auto */
-  --border-color: oklch(50% 10% 200 / 40%);
+  --color-accent: oklch(71.879% 0.11156 60.523);
+  --border-color: oklch(60.388% 0.21386 31.009);
   --hover-border: oklch(56.282% 0.23404 308.953 / 0.768);
   --hover-bg: color-mix(in oklch, var(--hover-border), canvas 85%);
-  --button-hover: oklch(65.171% 0.16026 147.502 / 0.844);
   --color-button: oklch(82.859% 0.09298 153.65);
+  --button-hover: oklch(65.171% 0.16026 147.502 / 0.844);
 }
 
-/* Light Mode */
-/* dark preference (system) */
-/* Automatic (system preference) */
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) {
-    --border-color: oklch(80% 0.05 200 / 60%);
-    --hover-border: oklch(70% 0.18 150 / 0.8);
-    --hover-bg: color-mix(in oklch, var(--hover-border), canvas 30%);
-    --button-hover: oklch(40% 0.1 150 / 0.9);
-    background-color: #3f3d3d;
-    color: #e0dede;
-  }
+html {
+  font-family: system-ui, sans-serif;
+  accent-color: var(--color-accent);
+  color-scheme: light dark;
 }
 
-/* force light mode when manually selected */
+/* ================= Light Mode ================= */
 html[data-theme="light"] {
   --border-color: oklch(50% 10% 200 / 40%);
   --hover-border: oklch(56.282% 0.23404 308.953 / 0.768);
   --hover-bg: color-mix(in oklch, var(--hover-border), canvas 85%);
+  --color-button: oklch(82.859% 0.09298 153.65);
   --button-hover: oklch(65.171% 0.16026 147.502 / 0.844);
+
   background-color: #fafafa;
   color: #111;
 }
 
-/* Dark Mode */
+/* ================= Dark Mode ================= */
 html[data-theme="dark"] {
   --border-color: oklch(80% 0.05 200 / 60%);
   --hover-border: oklch(70% 0.18 150 / 0.8);
   --hover-bg: color-mix(in oklch, var(--hover-border), canvas 30%);
+  --color-button: oklch(40% 0.1 150 / 0.9);
   --button-hover: oklch(40% 0.1 150 / 0.9);
+
   background-color: #3f3d3d;
   color: #e0dede;
 }
 
-
-
-
-
-
-body {
-  /* Set line height to 1.5 times the font size
-	   and use the OS’s UI font as the website font
-	 */
-  font: 100%/1.5 system-ui;
-  max-width: 100ch;
-  margin-inline: auto;
-  padding: 4ch;
-}
-form input,
-form textarea {
-  width: 100%;
-  box-sizing: border-box;
-}
-nav ul,
-nav li {
-  display: contents;
-}
-nav {
-  display: flex;
-  margin-bottom:auto;
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  border-bottom: 1px solid var(--border-color);
-  padding: 0.5ch;
-  color-scheme: light dark; 
-}
-nav a{
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  text-align: center;
-  padding: 0.5em;
-  font-weight: 700;
-}
-
-nav a.current{
-  border-bottom:0.4em solid var(--border-color);
-  padding-bottom: 0.1em;
-}
-
-nav a:hover {
-  border-bottom: 0.4em solid var(--hover-border);
-  padding-bottom: 0.1em;
-  background-color: var(--hover-bg);
-}
-
-
-form{
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1em;
-}
-
-form label {
-  display: grid;
-  grid-template-columns:subgrid;
-  grid-column: 1/ -1;
-}
-
-form button{
-  grid-column: 1 / -1;     
-  width: 100%;             
-  box-sizing: border-box; 
-  padding: 0.75em 1em;
-}
-
-button:hover {
-  background-color: oklch(65.171% 0.16026 147.502 / 0.844);
-}
-.projects{
-  display: grid;  
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  gap: 1.5em;       
-  margin: 2em 0;   
-}
-
-.projects article {
-  display: grid;
-  grid-template-rows: subgrid; 
-  grid-row: span 3;            
-  gap: 1em;
-}
-
-.projects article h2 {
-  margin: 0;
-}
-
-.projects article img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-h1 {
-  font-size: 4em;           /* make page title much bigger than h2 */
-  line-height: 1.1;
-  text-wrap: balance;       /* prevent awkward line breaks */
-}
-
-h2, h3, h4, h5, h6 {
-  line-height: 1.1;
-  text-wrap: balance;
-  margin: 0.5em 0;          /* space below headings */
-}
-
-section ul.skills {
-  list-style: none;
-  padding-left: 0;
-}
-
-section ul.skills li {
-  margin-bottom: 0.25em;
-}
-
-section article {
-  margin-bottom: 1em;
-}
-
-section article ul {
-  list-style-type: disc;
-  padding-left: 1.5em;
-  margin: 0.5em 0;
-}
-
-section article li {
-  margin-bottom: 0.5em;
-  line-height: 1.3;
-}
-
-article > p:first-of-type {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 0.9em;
-  margin-bottom: 0.5em;
-}
-
-.contact-info {
-  text-align: center;
-  line-height: 1.5; /* optional, for spacing */
-}
-
-.contact-info a {
-  margin: 0 0.5em; /* space between links */
-  text-decoration: none;
-}
-
-.name{
-  text-align: center;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid oklch(80% 3% 200);
-  margin: 0.5em 0;
-}
-
-.title-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.title-row h3 {
-  margin: 0;
-}
-
-.dates {
-  font-style: normal; /* not italic */
-  color: #555;        /* subtle contrast */
-}
-
-.sub-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 2px; /* small spacing under job title */
-}
-
-.company {
-  display: block;
-  font-style: italic; /* keep company non-italic */
-}
-
-.location {
-  display: block;
-  font-style: italic; /* make location italic */
-  color: #667;
-  
-}
-
-.degree {
-  font-style: normal;
-}
-
-
-.color-scheme {
-  position: absolute;   /* remove from normal flow */
-  top: 1rem;            /* distance from the top */
-  right: 1rem;          /* distance from the right */
-  font-size: 0.8em;     /* make it a bit smaller */
-  font-family: inherit; /* use the same font as the page */
-  background: transparent; /* optional: remove default background */
-  z-index: 1000;        /* make sure it’s above other content */
-}
-
-.color-scheme select {
-  font-family: inherit;
-  font-size: inherit;
-  padding: 0.2em 0.4em;
-  border-radius: 0.25em; /* optional: rounded corners */
-}
-
-
+/* ================= System Preference ================= */
 html:not([data-theme]) {
   background-color: #fafafa;
   color: #111;
@@ -281,5 +49,131 @@ html:not([data-theme]) {
   html:not([data-theme]) {
     background-color: #3f3d3d;
     color: #e0dede;
+    --border-color: oklch(80% 0.05 200 / 60%);
+    --hover-border: oklch(70% 0.18 150 / 0.8);
+    --hover-bg: color-mix(in oklch, var(--hover-border), canvas 30%);
+    --color-button: oklch(40% 0.1 150 / 0.9);
+    --button-hover: oklch(40% 0.1 150 / 0.9);
   }
+}
+
+/* ================= Body ================= */
+body {
+  font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: max(1em, (100% - 100ch)/2);
+  padding: 1em;
+}
+
+/* ================= Navigation ================= */
+nav ul, nav li {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+nav a {
+  flex: 1;
+  text-align: center;
+  padding: 0.5em;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 0.4em solid transparent;
+  border-radius: 0.3em;
+  transition: border-color 0.2s ease, background-color 0.2s ease, filter 0.2s ease;
+}
+
+nav a.current {
+  border-bottom-color: var(--border-color);
+  padding-bottom: 0.3em;
+}
+
+nav a:hover, nav a:focus {
+  border-bottom-color: var(--hover-border);
+  background-color: var(--hover-bg);
+  filter: brightness(1.05);
+}
+
+/* ================= Buttons & Form ================= */
+form input, form textarea, form button {
+  font: inherit;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid var(--border-color);
+  border-radius: 0.3em;
+}
+
+form button {
+  grid-column: 1 / -1;
+  background-color: var(--color-button);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+form button:hover {
+  background-color: var(--button-hover);
+}
+
+/* ================= Projects ================= */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1.5em;
+  margin-top: 2em;
+}
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 0.5em;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5em;
+  padding: 1em;
+  background-color: var(--color-background, inherit);
+}
+
+.projects article h2 {
+  margin: 0;
+}
+
+.projects img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.3em;
+}
+
+/* ================= Headings ================= */
+h1 { font-size: 4em; line-height: 1.1; margin-bottom: 0.5em; }
+h2,h3,h4,h5,h6 { line-height: 1.1; text-wrap: balance; margin: 0.5em 0; }
+
+/* ================= Theme Switcher ================= */
+.color-scheme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 0.8rem;
+  font-family: inherit;
+  background: transparent;
+  z-index: 1000;
+}
+
+.color-scheme select {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  border: 1px solid var(--border-color);
+  background: canvas;
+  color: canvastext;
 }
