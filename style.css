@@ -273,7 +273,7 @@ hr {
 :root {
   --color-accent: oklch(65.453% 0.25424 310.94);
   --color-border: oklch(50.255% 0.15692 257.347);
-  --color-button: oklch(82.859% 0.09298 153.65);
+  --color-button: oklch(47.559% 0.16141 142.403);
 }
 
 html {
@@ -291,24 +291,24 @@ body {
 /* ========== Theme Definitions ========== */
 html[data-theme="light"] {
   background-color: #fafafa;
-  color: #111;
+  color: #1c1a1a;
 }
 
 html[data-theme="dark"] {
-  background-color: #3f3d3d;
-  color: #e0dede;
+  background-color: #121212;
+  color: #f3f3f3;
 }
 
 /* System preference fallback */
 html:not([data-theme]) {
   background-color: #fafafa;
-  color: #111;
+  color: #1c1a1a;
 }
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) {
-    background-color: #3f3d3d;
-    color: #e0dede;
+    background-color: #121212;
+    color: #f3f3f3;
   }
 }
 
