@@ -94,41 +94,6 @@ form button{
 button:hover {
   background-color: oklch(65.171% 0.16026 147.502 / 0.844);
 }
-
-html[data-theme="light"] .projects article {
-  border-color: #000;
-  background-color: oklch(87.261% 0.05137 236.693);
-}
-
-/* Dark mode */
-html[data-theme="dark"] .projects article {
-  border-color: #fff;
-  background-color: oklch(25% 0.02 240);
-}
-
-/* Automatic/system preference */
-html:not([data-theme]) .projects article {
-  border-color: #000;
-  background-color: oklch(87.261% 0.05137 236.693);
-}
-@media (prefers-color-scheme: dark) {
-  html:not([data-theme]) .projects article {
-    border-color: #fff;
-    background-color: oklch(25% 0.02 240);
-  }
-}
-
-
-/* Default (system preference) */
-html:not([data-theme]) .projects article {
-  border-color: #000;
-  background-color: oklch(87.261% 0.05137 236.693);
-  @media (prefers-color-scheme: dark) {
-    border-color: #fff;
-    background-color: oklch(25% 0.02 240);
-  }
-}
-
 .projects{
   display: grid;  
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
@@ -252,8 +217,6 @@ hr {
 .degree {
   font-style: normal;
 }
-
-
 
 .color-scheme {
   position: absolute;       /* takes it out of normal flow */
