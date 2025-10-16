@@ -44,7 +44,6 @@ nav a{
 
 nav a.current{
   border-bottom:0.4em solid var(--border-color);
-
   padding-bottom: 0.1em;
 }
 
@@ -53,6 +52,7 @@ nav a:hover {
   padding-bottom: 0.1em;
   background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
+
 
 form{
   display: grid;
