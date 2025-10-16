@@ -16,7 +16,14 @@ const pages = [
 
 const navHTML = `
   <nav>
-    ${pages.map(page => `<a href="${page.url}">${page.label}</a>`).join("")}
+    ${pages.map(page => `
+      <a 
+        href="${page.url}"
+        ${page.external ? 'target="_blank" rel="noopener noreferrer"' : ""}
+      >
+        ${page.label}
+      </a>
+    `).join("")}
   </nav>
 `;
 
