@@ -1,5 +1,5 @@
 // global.js
-console.log("IT’S ALIVE!");
+console.log("ITS ALIVE!");
 
 // ===== Helper =====
 function $$(selector, context = document) {
@@ -59,40 +59,42 @@ for (const p of pages) {
 
 // ===== Step 4: Dark Mode / Theme Switcher =====
 
+// 1️⃣ Add theme switcher HTML
 document.body.insertAdjacentHTML(
-  'afterbegin',
+  "afterbegin",
   `
   <label class="color-scheme">
     Theme:
     <select>
-      <option value="light dark">Automatic</option>
+      <option value="system">Automatic</option>
       <option value="light">Light</option>
       <option value="dark">Dark</option>
     </select>
   </label>
-  `
+`
 );
 
-// 2️⃣ Get reference to the <select> element
-const select = document.querySelector('label.color-scheme select');
+const select = document.querySelector(".color-scheme select");
 
-// 3️⃣ Function to set color scheme
 function setColorScheme(scheme) {
-  document.documentElement.style.setProperty('color-scheme', scheme);
-  localStorage.colorScheme = scheme; // persist preference
+  if (scheme === "system") {
+    // Follow system preference
+    document.documentElement.removeAttribute("data-theme");
+  } else {
+    // Apply specific theme
+    document.documentElement.setAttribute("data-theme", scheme);
+  }
+
+  // Save the choice to localStorage
+  localStorage.setItem("colorScheme", scheme);
+
+  // Update dropdown
+  select.value = scheme;
 }
 
-// 4️⃣ Load saved preference on page load (if exists)
-if ('colorScheme' in localStorage) {
-  setColorScheme(localStorage.colorScheme);
-  select.value = localStorage.colorScheme;
-} else {
-  // default to automatic
-  setColorScheme('light dark');
-  select.value = 'light dark';
-}
+const savedScheme = localStorage.getItem("colorScheme") || "system";
+setColorScheme(savedScheme);
 
-// 5️⃣ Listen for changes in the select dropdown
-select.addEventListener('input', (event) => {
+select.addEventListener("input", (event) => {
   setColorScheme(event.target.value);
 });
