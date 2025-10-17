@@ -518,7 +518,7 @@ body > section h2 {
 .job:last-child,
 .project:last-child,
 .education-item:last-child {
-  border-bottom: 1.5em;
+  border-bottom: none;
 }
 
 .title-row,
