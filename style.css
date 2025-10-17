@@ -512,13 +512,13 @@ body > section h2 {
 .project,
 .education-item { 
   padding: 0.8em 0;
-  border-bottom: 1px solid currentColor;
+  border-bottom: none;
 }
 
 .job:last-child,
 .project:last-child,
 .education-item:last-child {
-  border-bottom: none;
+  border-bottom: 1.5em;
 }
 
 .title-row,
@@ -537,9 +537,32 @@ body > section h2 {
 .dates,
 .header-row .right {
   font-style: normal;
-  color: #555;
+  /*color: #555;*/
   text-align: right;
   white-space: nowrap;
+}
+
+html[data-theme="light"] .dates,
+html[data-theme="light"] .header-row .right {
+  color: #555;
+}
+
+/* Dark theme dates - much more readable */
+html[data-theme="dark"] .dates,
+html[data-theme="dark"] .header-row .right {
+  color: #cccccc;
+}
+
+html:not([data-theme]) .dates,
+html:not([data-theme]) .header-row .right {
+  color: #555;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .dates,
+  html:not([data-theme]) .header-row .right {
+    color: #cccccc;
+  }
 }
 
 .sub-meta {
@@ -555,13 +578,72 @@ body > section h2 {
   font-style: italic;
 }
 
-.location {
+/*.location {
+  color: rgb(135, 135, 135);
+}
+*/
+
+html[data-theme="light"] .location {
   color: #667;
+}
+
+/* Dark theme location - much more readable */
+html[data-theme="dark"] .location {
+  color: #aaaaaa;
+}
+
+/* System preference location */
+html:not([data-theme]) .location {
+  color: #667;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .location {
+    color: #aaaaaa;
+  }
 }
 
 .degree {
   font-style: normal;
 }
+
+/* ========== FIXED: Project Links in Dark Mode ========== */
+/* Make sure links have good contrast in dark mode */
+html[data-theme="dark"] a {
+  color: #8ab4f8; /* Nice blue that works well on dark backgrounds */
+}
+
+html[data-theme="dark"] a:hover {
+  color: #aecbfa; /* Lighter blue on hover */
+  text-decoration: underline;
+}
+
+/* System preference for links */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) a {
+    color: #8ab4f8;
+  }
+  
+  html:not([data-theme]) a:hover {
+    color: #aecbfa;
+    text-decoration: underline;
+  }
+}
+
+/* Specific fix for project article links */
+html[data-theme="dark"] .projects article a,
+html[data-theme="dark"] .project a {
+  color: #8ab4f8;
+  text-decoration: none;
+}
+
+html[data-theme="dark"] .projects article a:hover,
+html[data-theme="dark"] .project a:hover {
+  color: #aecbfa;
+  text-decoration: underline;
+}
+
+
 
 /* ========== Lists ========== */
 section ul.skills {
