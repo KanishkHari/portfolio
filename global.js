@@ -98,3 +98,23 @@ setColorScheme(savedScheme);
 select.addEventListener("input", (event) => {
   setColorScheme(event.target.value);
 });
+
+// function from step 1.2 lab 4
+export async function fetchJSON(url) {
+  try {
+    // Fetch the JSON file from the given URL
+    const response = await fetch(url);
+    console.log(response);
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch projects');
+  }
+  const data = await response.json();
+  return data;
+  
+} catch (error) {
+    console.error('Error fetching or parsing JSON data:', error);
+  }
+}
+  
+
