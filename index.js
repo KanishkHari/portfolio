@@ -16,7 +16,6 @@ async function loadLatest() {
           <dt>Public Gists:</dt><dd>${githubData.public_gists}</dd>
           <dt>Followers:</dt><dd>${githubData.followers}</dd>
           <dt>Following:</dt><dd>${githubData.following}</dd>
-          <dt>Starred Repos:</dt><dd>${githubData.starred_url}</dd> 
         </dl>
     `;
 }
