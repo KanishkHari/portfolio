@@ -23,5 +23,5 @@ async function loadLatest() {
 
 }
 
-loadLatestProjects();
+loadLatest();
 
