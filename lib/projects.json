@@ -1,62 +1,74 @@
 [
-    {
-        "title": "Lorem ipsum dolor sit.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis odio id in aliquid est velit vitae, odit corrupti doloribus autem ea. A atque quia cupiditate, iure repellendus incidunt ipsa numquam."
-    },
-    {
-        "title": "Velit provident blanditiis eaque.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Consectetur nemo nostrum commodi aliquid repudiandae consequuntur. Earum saepe nemo ratione iste, illum suscipit voluptatibus. Voluptatem, molestiae eos ipsam, vel totam nam tenetur distinctio laborum inventore cupiditate earum nulla obcaecati."
-    },
-    {
-        "title": "Ducimus dolore ullam consequatur!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Dolores corporis molestiae aliquam! Omnis, facere quibusdam! Porro maxime cum exercitationem iure impedit nihil recusandae repellat et, rerum sequi, labore sit velit ducimus consequuntur accusamus sed. Dolore labore debitis accusantium."
-    },
-    {
-        "title": "Vel iusto quas voluptatem.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Vitae, odit, accusamus amet quaerat maxime dolor eum facilis necessitatibus sunt iusto provident nostrum minus laboriosam eligendi ullam id cupiditate ratione. Sed ad qui dolore delectus impedit corrupti blanditiis mollitia."
-    },
-    {
-        "title": "Eos placeat aut vel.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Ratione illo omnis odio eius vitae nisi sit earum temporibus nam aliquid esse pariatur itaque blanditiis deserunt iure, dignissimos autem? Nam aut provident maiores nulla sequi delectus quo reiciendis porro."
-    },
-    {
-        "title": "Blanditiis nulla at nemo!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Voluptates excepturi natus iure mollitia? Vero placeat deleniti voluptatum dolorem nostrum laborum eum maiores natus architecto, neque deserunt esse fugit repudiandae unde iusto qui ea repellendus inventore maxime impedit veritatis."
-    },
-    {
-        "title": "Enim, est. Soluta, minima.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Earum aperiam, maiores repellendus perferendis exercitationem ex officiis qui cumque magni asperiores consequatur sed dicta ut nihil eos optio magnam blanditiis illo vel. Odio ipsum sunt autem provident recusandae totam?"
-    },
-    {
-        "title": "Necessitatibus aspernatur reiciendis sint!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Maiores magnam saepe ut! Quam ipsum quo nihil, nisi et aut ipsam, modi praesentium nam tempore dolorem nemo laboriosam officia explicabo impedit. Sed officia, ut odit suscipit fugiat temporibus assumenda."
-    },
-    {
-        "title": "Aliquam labore et modi.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Magni quisquam error, quos consequatur vitae corrupti sint repudiandae? Obcaecati, cumque laboriosam sunt neque minima corrupti harum vitae ratione dicta dignissimos voluptatum error. Alias iusto ducimus eveniet ullam commodi explicabo!"
-    },
-    {
-        "title": "Quidem unde odit consequuntur!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Commodi perspiciatis sit quaerat ipsum delectus voluptates rerum nesciunt soluta fugiat ullam iste voluptate maiores ex, amet dignissimos ipsa doloremque eos unde eligendi nisi inventore. Architecto eum dicta quam tempore!"
-    },
-    {
-        "title": "Voluptas assumenda maiores quibusdam.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Ducimus nobis error ullam rerum soluta neque magni blanditiis, quia animi sapiente magnam nostrum, itaque ea praesentium sequi maiores eveniet? Itaque modi dolor laborum qui sapiente cumque sed error reprehenderit?"
-    },
-    {
-        "title": "Nostrum recusandae at beatae.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Aspernatur, esse voluptas laudantium officia consequuntur pariatur a numquam harum hic tempore fuga in ratione saepe, amet dolor commodi rem, temporibus atque dolorem quos. Veritatis accusantium voluptatibus hic maiores excepturi?"
-    }
+  {
+    "title": "Personal Portfolio Website",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Built a responsive personal portfolio website to showcase my projects and skills."
+  },
+  {
+    "title": "NBA Stats Analyzer",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Used Python and pandas to cluster NBA players based on performance statistics."
+  },
+  {
+    "title": "Bridge Collapse Prediction",
+    "year": "2024",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Developed a model to predict bridge collapse risks after earthquakes using machine learning."
+  },
+  {
+    "title": "AI Equation Solver/Grapher",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Created an AI model that identifies mathematical equations from plotted graphs."
+  },
+  {
+    "title": "Recipe Recommendation System",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Analyzed 80,000+ recipes and built a model to recommend personalized recipe options."
+  },
+  {
+    "title": "Data Visualization Dashboard",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Built an interactive dashboard using D3.js to visualize demographic trends."
+  },
+  {
+    "title": "Earthquake Damage Visualizer",
+    "year": "2022",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Visualized seismic damage data to highlight high-risk regions."
+  },
+  {
+    "title": "Stock Trend Predictor",
+    "year": "2023",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Trained a model to predict short-term stock movements using historical data."
+  },
+  {
+    "title": "Climate Change Impact Map",
+    "year": "2024",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Mapped global temperature and precipitation changes using Leaflet.js."
+  },
+  {
+    "title": "COVID-19 Data Tracker",
+    "year": "2021",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Built a dashboard to visualize infection and vaccination trends globally."
+  },
+  {
+    "title": "Movie Review Sentiment Analyzer",
+    "year": "2022",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Applied natural language processing to classify movie review sentiments."
+  },
+  {
+    "title": "Web Accessibility Audit Tool",
+    "year": "2025",
+    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "description": "Developed a Chrome extension that checks for common accessibility issues on webpages."
+  }
 ]
