@@ -4,6 +4,11 @@ async function loadProjects() {
   console.log('Projects:', projects);
   const projectsContainer = document.querySelector('.projects');
   renderProjects(projects, projectsContainer, 'h2');
+
+  const titleElement = document.querySelector('.projects-title');
+  if (titleElement) {
+    titleElement.textContent = `Projects (${projects.length})`;
+  }
 }
 
 loadProjects();
