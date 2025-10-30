@@ -58,7 +58,7 @@ loadProjects();
 //   {title: "Web Accessibility Audit Tool", year: "2025"}
 // ]
 
-let selectedYear = null; // null = no selection
+let selectedIndex = -1;
 let searchInput = document.querySelector('.searchBar');
 const projectsContainer = document.querySelector('.projects');
 function renderPieChart(projectsGiven) {
@@ -89,16 +89,14 @@ function renderPieChart(projectsGiven) {
   // Draw slices
   arcData.forEach((d, i) => {
     svg.append('path')
-    .data(arcData)
-    .join('path')
-    .attr('d', arcGenerator)
-    .attr('fill', (d, i) => colors(i))
-    .classed('selected', d => selectedYear === d.data.label)
-    .style('cursor', 'pointer')
-    .on('click', (event, d) => {
-      selectedYear = selectedYear === d.data.label ? null : d.data.label;
-      updateFilters();
-    });
+      .attr('d', arcGenerator(d))
+      .attr('fill', colors(i))
+      .style('cursor', 'pointer')
+      .classed('selected', selectedIndex === i) // highlight if selected
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i; // toggle selection
+        updateFilters(); // call function to apply filters and update chart
+      });
   });
 
   // Draw legend items
@@ -112,14 +110,21 @@ function renderPieChart(projectsGiven) {
       selectedYear = selectedYear === d.label ? null : d.label;
       updateFilters();
     });
+
   });
 }
 
 function updateFilters() {
-  // Step 1: Filter by selected year (if any)
-  let filteredByYear = selectedYear 
-    ? projects.filter(p => p.year === selectedYear) 
-    : projects;
+  // Filter projects by selected year
+  let rolledData = d3.rollups(
+    projects,
+    (v) => v.length,
+    (d) => d.year
+  );
+
+  let filteredByYear = selectedIndex === -1
+    ? projects
+    : projects.filter(p => p.year === rolledData[selectedIndex][0]);
 
   // Step 2: Filter by search query
   let query = searchInput.value.toLowerCase();
@@ -129,11 +134,10 @@ function updateFilters() {
 
   // Step 3: Render projects and pie chart
   renderProjects(finalFiltered, projectsContainer, 'h2');
-  renderPieChart(finalFiltered); // refresh pie to reflect filtered data
+  renderPieChart(finalFiltered);
 }
 
+searchInput.addEventListener('input', updateFilters);
 
-// searchInput.addEventListener('input', updateFilters);
-
-// renderProjects(projects, projectsContainer, 'h2');
-// renderPieChart(projects);
+renderProjects(projects, projectsContainer, 'h2');
+renderPieChart(projects);
