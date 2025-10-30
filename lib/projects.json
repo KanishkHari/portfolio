@@ -8,13 +8,13 @@
   {
     "title": "NBA Stats Analyzer",
     "year": "2023",
-    "image": "https://blog.logomyway.com/wp-content/uploads/2017/01/nba-logo-design.jpg",
+    "image": "../images/nba_logo.png",
     "description": "Used Python and pandas to cluster NBA players based on performance statistics."
   },
   {
     "title": "Bridge Collapse Prediction",
     "year": "2024",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brooklyn_Bridge_Manhattan.jpg/330px-Brooklyn_Bridge_Manhattan.jpg",
     "description": "Developed a model to predict bridge collapse risks after earthquakes using machine learning."
   },
   {
