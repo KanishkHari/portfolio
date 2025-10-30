@@ -47,14 +47,22 @@ loadProjects();
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
 // Step 1.4 - basic data
-let data = [1, 2, 3, 4, 5, 5];
+let data = [
+  { value: 1, label: 'apples' },
+  { value: 2, label: 'oranges' },
+  { value: 3, label: 'mangos' },
+  { value: 4, label: 'pears' },
+  { value: 5, label: 'limes' },
+  { value: 5, label: 'cherries' },
+];
 
 // Step 1.3 - create an arc generator
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-let sliceGenerator = d3.pie();
+let sliceGenerator = d3.pie().value((d) => d.value);
 let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
+let svg = d3.select('#projects-pie-plot');
 
 // Step 1.5 - color scale
 let colors = d3.scaleOrdinal(d3.schemeTableu10);
@@ -66,4 +74,13 @@ arcs.forEach((arc, idx) => {
     .attr('d', arc)
     .attr('fill', colors(idx));
 });
+
+let legend = d3.select('.legend');
+data.forEach((d, idx) => {
+  legend
+    .append('li')
+    .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
+    .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
+});
+
 
