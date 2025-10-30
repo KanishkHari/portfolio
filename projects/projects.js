@@ -17,6 +17,7 @@ async function loadProjects() {
 
   let query = '';
   let searchInput = document.querySelector('.searchBar');
+  searchInput.addEventListener('input', updateFilters);
 
   renderPieChart(projects);
   searchInput.addEventListener('change', (event) => {
@@ -56,6 +57,8 @@ loadProjects();
 //   {title: "Movie Review Sentiment Analyzer", year: "2024"},
 //   {title: "Web Accessibility Audit Tool", year: "2025"}
 // ]
+
+let selectedIndex = -1
 function renderPieChart(projectsGiven) {
   // 🔹 1. Aggregate project counts by year
   let rolledData = d3.rollups(
@@ -64,40 +67,63 @@ function renderPieChart(projectsGiven) {
     (d) => d.year
   );
 
-  // 🔹 2. Convert into objects D3 can understand
   let data = rolledData.map(([year, count]) => ({
     label: year,
     value: count,
   }));
 
-  // 🔹 3. Define pie and arc generators
   let sliceGenerator = d3.pie().value((d) => d.value);
   let arcData = sliceGenerator(data);
   let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
-  let arcs = arcData.map((d) => arcGenerator(d));
 
-  // 🔹 4. Define colors
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-  // 🔹 5. Clear previous SVG paths & legend items
   let svg = d3.select('#projects-pie-plot');
   svg.selectAll('path').remove();
 
   let legend = d3.select('.legend');
   legend.selectAll('*').remove();
 
-  // 🔹 6. Draw new pie slices
-  arcs.forEach((arc, idx) => {
+  // Draw slices
+  arcData.forEach((d, i) => {
     svg.append('path')
-      .attr('d', arc)
-      .attr('fill', colors(idx));
+      .attr('d', arcGenerator(d))
+      .attr('fill', colors(i))
+      .style('cursor', 'pointer')
+      .classed('selected', selectedIndex === i) // highlight if selected
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i; // toggle selection
+        updateFilters(); // call function to apply filters and update chart
+      });
   });
 
-  // 🔹 7. Draw matching legend
-  data.forEach((d, idx) => {
+  // Draw legend items
+  data.forEach((d, i) => {
     legend.append('li')
-      .attr('style', `--color:${colors(idx)}`)
-      .attr('class', 'legend-item')
-      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+      .attr('class', `legend-item ${selectedIndex === i ? 'selected' : ''}`)
+      .attr('style', `--color:${colors(i)}`)
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
+      .on('click', () => {
+        selectedIndex = selectedIndex === i ? -1 : i;
+        updateFilters();
+      });
   });
+}
+
+function updateFilters() {
+  // Filter projects by selected year
+  let filteredByYear = selectedIndex === -1
+    ? projects
+    : projects.filter(p => p.year === d3.rollups(projects, v => v.length, d => d.year)[selectedIndex][0]);
+
+  // Then filter by search query (if any)
+  let query = document.querySelector('.searchBar').value.toLowerCase();
+  let finalFiltered = filteredByYear.filter(project => 
+    Object.values(project).join('\n').toLowerCase().includes(query)
+  );
+
+  // Render projects & pie chart
+  const projectsContainer = document.querySelector('.projects');
+  renderProjects(finalFiltered, projectsContainer, 'h2');
+  renderPieChart(finalFiltered);
 }
