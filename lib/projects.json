@@ -2,19 +2,19 @@
   {
     "title": "Personal Portfolio Website",
     "year": "2025",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "image": "../images/website_ss.jpeg",
     "description": "Built a responsive personal portfolio website to showcase my projects and skills."
   },
   {
     "title": "NBA Stats Analyzer",
     "year": "2023",
-    "image": "../images/nba_logo.png",
+    "image": "../images/nba_logo.jpeg",
     "description": "Used Python and pandas to cluster NBA players based on performance statistics."
   },
   {
     "title": "Bridge Collapse Prediction",
     "year": "2024",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Brooklyn_Bridge_Manhattan.jpg/330px-Brooklyn_Bridge_Manhattan.jpg",
+    "image": "../images/bridge.jpeg",
     "description": "Developed a model to predict bridge collapse risks after earthquakes using machine learning."
   },
   {
