@@ -743,6 +743,9 @@ img {
   grid-row: 2;
 }
 
+/* ========== Pie Chart Specific Styles ========== */
+
+/* Container for pie chart and legend */
 .container {
   display: flex;
   align-items: flex-start;
@@ -750,51 +753,97 @@ img {
   flex-wrap: wrap;
 }
 
+/* Pie chart SVG */
 #projects-pie-plot {
   max-width: 20em;
   margin-block: 2em;
   overflow: visible;
 }
+
+/* STEP 5.1: Hover effects for pie wedges */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
+#projects-pie-plot path {
+  transition: 300ms;
+  cursor: pointer;
+}
+
+/* STEP 5.2: Selected wedge styling */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color);
+}
+
+/* Legend styling */
 .legend {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
   gap: 1em;
   border: 1px solid #ccc;
   padding: 1em;
-  margin-top: 1em;
+  margin: 0;
   list-style: none;
   flex: 1;
-  margin: 0;
 }
 
+/* STEP 2.2: Legend item layout */
 .legend-item {
   display: flex;
   align-items: center;
   gap: 0.5em;
+  cursor: pointer;
+  padding: 0.25em;
+  border-radius: 0.25em;
+  transition: background-color 200ms;
 }
 
+.legend-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+html[data-theme="dark"] .legend-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* STEP 2.2: Color swatch styling */
 .swatch {
   display: inline-block;
   width: 1em;
   height: 1em;
+  aspect-ratio: 1 / 1;
   border-radius: 0.2em;
   background: var(--color);
 }
 
-&:has(path:hover) {
-  path:not(:hover) {
-    opacity: 0.5;
-  }
+/* Search bar styling */
+.searchBar {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.75em;
+  margin: 1em 0;
+  font-size: 1em;
+  border: 2px solid #ccc;
+  border-radius: 0.5em;
+  transition: border-color 200ms;
 }
 
-path {
-  transition: 300ms;
+.searchBar:focus {
+  outline: none;
+  border-color: var(--color-accent);
 }
 
-.selected {
-  --color: oklch(60% 45% 0) !important;
+/* Dark theme adjustments */
+html[data-theme="dark"] .searchBar {
+  background-color: #2a2a2a;
+  color: #f3f3f3;
+  border-color: #555;
+}
 
-  &:is(path) {
-    fill: var(--color);
-  }
+html[data-theme="dark"] .legend {
+  border-color: #555;
 }
