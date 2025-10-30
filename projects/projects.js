@@ -47,14 +47,39 @@ loadProjects();
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
 // Step 1.4 - basic data
-let data = [
-  { value: 1, label: 'apples' },
-  { value: 2, label: 'oranges' },
-  { value: 3, label: 'mangos' },
-  { value: 4, label: 'pears' },
-  { value: 5, label: 'limes' },
-  { value: 5, label: 'cherries' },
-];
+// let data = [
+//   { value: 1, label: 'apples' },
+//   { value: 2, label: 'oranges' },
+//   { value: 3, label: 'mangos' },
+//   { value: 4, label: 'pears' },
+//   { value: 5, label: 'limes' },
+//   { value: 5, label: 'cherries' },
+// ];
+
+
+
+// import projects data from projects.json file
+let projects = [
+  {title:  "Personal Portfolio Website", year: "2025"},
+  {title: "NBA Stats Analyzer", year: "2023"},
+  {title: "Bridge Collapse Prediction",  year: "2024"},
+  {title: "AI Equation Solver/Grapher", year: "2023"},
+  {title: "Recipe Recommendation System", year: "2025"},
+  {title: "Data Visualization Dashboard", year: "2023"},
+  {title: "Earthquake Damage Visualizer", year: "2022"},
+  {title: "Stock Trend Predictor", year: "2023"},
+  {title: "Climate Change Impact Map", year: "2024"},
+  {title: "COVID-19 Data Tracker", year: "2023"},
+  {title: "Movie Review Sentiment Analyzer", year: "2024"},
+  {title: "Web Accessibility Audit Tool", year: "2025"}
+]
+let rolledData = d3.rollups(
+  projects,
+  (v) => v.length,
+  (d) => d.year,
+);
+
+let data = rolledData.map(([year, count]) => ({ value: count, label: year }));
 
 // Step 1.3 - create an arc generator
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
@@ -83,5 +108,3 @@ data.forEach((d, idx) => {
     .attr('class', 'legend-item')
     .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
 });
-
-
