@@ -2,13 +2,13 @@
   {
     "title": "Personal Portfolio Website",
     "year": "2025",
-    "image": "/Users/kanishkhari/Documents/GitHub/portfolio/images/website_ss.jpeg",
+    "image": "../images/website_ss.jpeg",
     "description": "Built a responsive personal portfolio website to showcase my projects and skills."
   },
   {
     "title": "NBA Stats Analyzer",
     "year": "2023",
-    "image": "/Users/kanishkhari/Documents/GitHub/portfolio/images/nba_logo.jpeg",
+    "image": "../images/nba_logo.jpeg",
     "description": "Used Python and pandas to cluster NBA players based on performance statistics."
   },
   {
