@@ -65,13 +65,12 @@ let arcs = arcData.map((d) => arcGenerator(d));
 
 
 // Step 1.5 - color scale
-let colors = d3.scaleOrdinal(d3.schemeTableu10);
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 // draw arcs
 let svg = d3.select('#projects-pie-plot');
 arcs.forEach((arc, idx) => {
-  d3.select('svg')
-    .append('path')
+    svg.append('path')
     .attr('d', arc)
     .attr('fill', colors(idx));
 });
