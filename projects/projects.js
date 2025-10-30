@@ -47,18 +47,17 @@ loadProjects();
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
 // Step 1.4 - basic data
-let data = [1, 2];
+let data = [1, 2, 3, 4, 5, 5];
 
 // Step 1.3 - create an arc generator
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
-// Step 1.4 - use D3 pie helper
 let sliceGenerator = d3.pie();
 let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 
 // Step 1.5 - color scale
-let colors = d3.scaleOrdinal(d3.schemeTableau10);
+let colors = d3.scaleOrdinal(d3.schemeTableu10);
 
 // draw arcs
 arcs.forEach((arc, idx) => {
