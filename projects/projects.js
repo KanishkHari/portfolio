@@ -110,7 +110,6 @@ function renderPieChart(projectsGiven) {
       selectedYear = selectedYear === d.label ? null : d.label;
       updateFilters();
     });
-
   });
 }
 
