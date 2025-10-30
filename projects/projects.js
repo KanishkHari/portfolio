@@ -1,7 +1,11 @@
 import { fetchJSON, renderProjects } from '../global.js';
+
+import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+
 async function loadProjects() {
   const projects = await fetchJSON('../lib/projects.json');
   console.log('Projects:', projects);
+
   const projectsContainer = document.querySelector('.projects');
   renderProjects(projects, projectsContainer, 'h2');
 
@@ -9,114 +13,91 @@ async function loadProjects() {
   if (titleElement) {
     titleElement.textContent = `Projects (${projects.length})`;
   }
+  renderPieChart(projects);
+
+  let query = '';
+  let searchInput = document.querySelector('.searchBar');
+
+  renderPieChart(projects);
+  searchInput.addEventListener('change', (event) => {
+  // update query value
+  query = event.target.value;
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+});
 }
 
 loadProjects();
 
 
-// import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-// let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
-// let arc = arcGenerator({
-//   startAngle: 0,
-//   endAngle: 2 * Math.PI,
-// });
-// d3.select('svg').append('path').attr('d', arc).attr('fill', 'red');
-
-
-// let data = [1, 2];
-// let total = 0;
-
-// for (let d of data) {
-//   total += d;
-// }
-// let angle = 0;
-// let arcData = [];
-
-// for (let d of data) {
-//   let endAngle = angle + (d / total) * 2 * Math.PI;
-//   arcData.push({ startAngle: angle, endAngle });
-//   angle = endAngle;
-// }
-// let arcs = arcData.map((d) => arcGenerator(d));
-
-// arcs.forEach((arc) => {
-//   // TODO, fill in step for appending path to svg using D3
-
-// });
 
 // Step 1.3 - import D3
-import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 
-// Step 1.4 - basic data
-// let data = [
-//   { value: 1, label: 'apples' },
-//   { value: 2, label: 'oranges' },
-//   { value: 3, label: 'mangos' },
-//   { value: 4, label: 'pears' },
-//   { value: 5, label: 'limes' },
-//   { value: 5, label: 'cherries' },
-// ];
 
-let query = '';
-let searchInput = document.querySelector('.searchBar')
-searchInput.addEventListener('change', (event) => {
-  // update query value
-  query = event.target.value;
-  // TODO: filter the projects
-  let filteredProjects = projects.filter((project) =>
-    project.title.includes(query),
-);
+
 
 
   // TODO: render updated projects!
-});
 // import projects data from projects.json file
-let projects = [
-  {title:  "Personal Portfolio Website", year: "2025"},
-  {title: "NBA Stats Analyzer", year: "2023"},
-  {title: "Bridge Collapse Prediction",  year: "2024"},
-  {title: "AI Equation Solver/Grapher", year: "2023"},
-  {title: "Recipe Recommendation System", year: "2025"},
-  {title: "Data Visualization Dashboard", year: "2023"},
-  {title: "Earthquake Damage Visualizer", year: "2022"},
-  {title: "Stock Trend Predictor", year: "2023"},
-  {title: "Climate Change Impact Map", year: "2024"},
-  {title: "COVID-19 Data Tracker", year: "2023"},
-  {title: "Movie Review Sentiment Analyzer", year: "2024"},
-  {title: "Web Accessibility Audit Tool", year: "2025"}
-]
-let rolledData = d3.rollups(
-  projects,
-  (v) => v.length,
-  (d) => d.year,
-);
+// let projects = [
+//   {title:  "Personal Portfolio Website", year: "2025"},
+//   {title: "NBA Stats Analyzer", year: "2023"},
+//   {title: "Bridge Collapse Prediction",  year: "2024"},
+//   {title: "AI Equation Solver/Grapher", year: "2023"},
+//   {title: "Recipe Recommendation System", year: "2025"},
+//   {title: "Data Visualization Dashboard", year: "2023"},
+//   {title: "Earthquake Damage Visualizer", year: "2022"},
+//   {title: "Stock Trend Predictor", year: "2023"},
+//   {title: "Climate Change Impact Map", year: "2024"},
+//   {title: "COVID-19 Data Tracker", year: "2023"},
+//   {title: "Movie Review Sentiment Analyzer", year: "2024"},
+//   {title: "Web Accessibility Audit Tool", year: "2025"}
+// ]
+function renderPieChart(projectsGiven) {
+  // 🔹 1. Aggregate project counts by year
+  let rolledData = d3.rollups(
+    projectsGiven,
+    (v) => v.length,
+    (d) => d.year
+  );
 
-let data = rolledData.map(([year, count]) => ({ value: count, label: year }));
+  // 🔹 2. Convert into objects D3 can understand
+  let data = rolledData.map(([year, count]) => ({
+    label: year,
+    value: count,
+  }));
 
-// Step 1.3 - create an arc generator
-let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  // 🔹 3. Define pie and arc generators
+  let sliceGenerator = d3.pie().value((d) => d.value);
+  let arcData = sliceGenerator(data);
+  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  let arcs = arcData.map((d) => arcGenerator(d));
 
-let sliceGenerator = d3.pie().value((d) => d.value);
-let arcData = sliceGenerator(data);
-let arcs = arcData.map((d) => arcGenerator(d));
+  // 🔹 4. Define colors
+  let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
+  // 🔹 5. Clear previous SVG paths & legend items
+  let svg = d3.select('#projects-pie-plot');
+  svg.selectAll('path').remove();
 
-// Step 1.5 - color scale
-let colors = d3.scaleOrdinal(d3.schemeTableau10);
+  let legend = d3.select('.legend');
+  legend.selectAll('*').remove();
 
-// draw arcs
-let svg = d3.select('#projects-pie-plot');
-arcs.forEach((arc, idx) => {
+  // 🔹 6. Draw new pie slices
+  arcs.forEach((arc, idx) => {
     svg.append('path')
-    .attr('d', arc)
-    .attr('fill', colors(idx));
-});
+      .attr('d', arc)
+      .attr('fill', colors(idx));
+  });
 
-let legend = d3.select('.legend');
-data.forEach((d, idx) => {
-  legend
-    .append('li')
-    .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
-    .attr('class', 'legend-item')
-    .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
-});
+  // 🔹 7. Draw matching legend
+  data.forEach((d, idx) => {
+    legend.append('li')
+      .attr('style', `--color:${colors(idx)}`)
+      .attr('class', 'legend-item')
+      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+  });
+}
