@@ -56,12 +56,8 @@ function renderPieChart(projectsGiven) {
 
   let svg = d3.select('#projects-pie-plot');
   svg.selectAll('path').remove();
-
-  let legend = d3.select('.legend');
-  legend.selectAll('*').remove();
-
-  // Draw slices
-  svg
+  arcs.forEach((arc, i) => {
+    svg
     .selectAll('path')
     .data(newArcData)
     .join('path')
@@ -69,11 +65,16 @@ function renderPieChart(projectsGiven) {
     .attr('fill', (_, i) => colors(i))
     .style('cursor', 'pointer')
     .classed('selected', (_, i) => selectedIndex == i)
-    .on('click', (_, d, i) => {
-      const idx = newArcData.findIndex(a => a.data.label == d.data.label);
-      selectedIndex = selectedIndex === idx ? -1 : idx;
-      updateFilters();
+    .on('click', () => {
+      selectedIndex = selectedIndex === i ? -1 : i;
     });
+  });
+
+  let legend = d3.select('.legend');
+  legend.selectAll('*').remove();
+
+  // Draw slices
+  
     
 
   // Draw legend items
