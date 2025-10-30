@@ -763,6 +763,8 @@ img {
   padding: 1em;
   margin-top: 1em;
   list-style: none;
+  flex: 1;
+  margin: 0;
 }
 
 .legend-item {
