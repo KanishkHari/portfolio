@@ -743,6 +743,13 @@ img {
   grid-row: 2;
 }
 
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
 #projects-pie-plot {
   max-width: 20em;
   margin-block: 2em;
@@ -755,15 +762,16 @@ img {
   border: 1px solid #ccc;
   padding: 1em;
   margin-top: 1em;
+  list-style: none;
 }
 
-.legend li {
+.legend-item {
   display: flex;
   align-items: center;
   gap: 0.5em;
 }
 
-.legend .swatch {
+.swatch {
   display: inline-block;
   width: 1em;
   height: 1em;
