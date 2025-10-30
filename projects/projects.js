@@ -58,7 +58,9 @@ loadProjects();
 //   {title: "Web Accessibility Audit Tool", year: "2025"}
 // ]
 
-let selectedIndex = -1
+let selectedIndex = -1;
+let searchInput = document.querySelector('.searchBar');
+const projectsContainer = document.querySelector('.projects');
 function renderPieChart(projectsGiven) {
   // 🔹 1. Aggregate project counts by year
   let rolledData = d3.rollups(
@@ -112,18 +114,28 @@ function renderPieChart(projectsGiven) {
 
 function updateFilters() {
   // Filter projects by selected year
+  let rolledData = d3.rollups(
+    projects,
+    (v) => v.length,
+    (d) => d.year
+  );
+
   let filteredByYear = selectedIndex === -1
     ? projects
-    : projects.filter(p => p.year === d3.rollups(projects, v => v.length, d => d.year)[selectedIndex][0]);
+    : projects.filter(p => p.year === rolledData[selectedIndex][0]);
 
-  // Then filter by search query (if any)
-  let query = document.querySelector('.searchBar').value.toLowerCase();
-  let finalFiltered = filteredByYear.filter(project => 
+  // Step 2: Filter by search query
+  let query = searchInput.value.toLowerCase();
+  let finalFiltered = filteredByYear.filter(project =>
     Object.values(project).join('\n').toLowerCase().includes(query)
   );
 
-  // Render projects & pie chart
-  const projectsContainer = document.querySelector('.projects');
+  // Step 3: Render projects and pie chart
   renderProjects(finalFiltered, projectsContainer, 'h2');
   renderPieChart(finalFiltered);
 }
+
+searchInput.addEventListener('input', updateFilters);
+
+renderProjects(projects, projectsContainer, 'h2');
+renderPieChart(projects);
