@@ -780,3 +780,9 @@ img {
   border-radius: 0.2em;
   background: var(--color);
 }
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
