@@ -13,6 +13,7 @@ async function loadProjects() {
 
 loadProjects();
 
+
 // import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 // let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 // let arc = arcGenerator({
@@ -56,8 +57,19 @@ import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
 //   { value: 5, label: 'cherries' },
 // ];
 
+let query = '';
+let searchInput = document.querySelector('.searchBar')
+searchInput.addEventListener('change', (event) => {
+  // update query value
+  query = event.target.value;
+  // TODO: filter the projects
+  let filteredProjects = projects.filter((project) =>
+    project.title.includes(query),
+);
 
 
+  // TODO: render updated projects!
+});
 // import projects data from projects.json file
 let projects = [
   {title:  "Personal Portfolio Website", year: "2025"},
