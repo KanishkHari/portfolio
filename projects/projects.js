@@ -58,7 +58,7 @@ loadProjects();
 //   {title: "Web Accessibility Audit Tool", year: "2025"}
 // ]
 
-let selectedIndex = -1;
+let selectedYear = null; // null = no selection
 let searchInput = document.querySelector('.searchBar');
 const projectsContainer = document.querySelector('.projects');
 function renderPieChart(projectsGiven) {
@@ -89,40 +89,37 @@ function renderPieChart(projectsGiven) {
   // Draw slices
   arcData.forEach((d, i) => {
     svg.append('path')
-      .attr('d', arcGenerator(d))
-      .attr('fill', colors(i))
-      .style('cursor', 'pointer')
-      .classed('selected', selectedIndex === i) // highlight if selected
-      .on('click', () => {
-        selectedIndex = selectedIndex === i ? -1 : i; // toggle selection
-        updateFilters(); // call function to apply filters and update chart
-      });
+    .data(arcData)
+    .join('path')
+    .attr('d', arcGenerator)
+    .attr('fill', (d, i) => colors(i))
+    .classed('selected', d => selectedYear === d.data.label)
+    .style('cursor', 'pointer')
+    .on('click', (event, d) => {
+      selectedYear = selectedYear === d.data.label ? null : d.data.label;
+      updateFilters();
+    });
   });
 
   // Draw legend items
   data.forEach((d, i) => {
-    legend.append('li')
-      .attr('class', `legend-item ${selectedIndex === i ? 'selected' : ''}`)
-      .attr('style', `--color:${colors(i)}`)
-      .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`)
-      .on('click', () => {
-        selectedIndex = selectedIndex === i ? -1 : i;
-        updateFilters();
-      });
+    legend.selectAll('li')
+    .data(data)
+    .join('li')
+    .text(d => `${d.label} (${d.value})`)
+    .classed('selected', d => selectedYear === d.label)
+    .on('click', (event, d) => {
+      selectedYear = selectedYear === d.label ? null : d.label;
+      updateFilters();
+    });
   });
 }
 
 function updateFilters() {
-  // Filter projects by selected year
-  let rolledData = d3.rollups(
-    projects,
-    (v) => v.length,
-    (d) => d.year
-  );
-
-  let filteredByYear = selectedIndex === -1
-    ? projects
-    : projects.filter(p => p.year === rolledData[selectedIndex][0]);
+  // Step 1: Filter by selected year (if any)
+  let filteredByYear = selectedYear 
+    ? projects.filter(p => p.year === selectedYear) 
+    : projects;
 
   // Step 2: Filter by search query
   let query = searchInput.value.toLowerCase();
@@ -132,10 +129,11 @@ function updateFilters() {
 
   // Step 3: Render projects and pie chart
   renderProjects(finalFiltered, projectsContainer, 'h2');
-  renderPieChart(finalFiltered);
+  renderPieChart(finalFiltered); // refresh pie to reflect filtered data
 }
 
-searchInput.addEventListener('input', updateFilters);
 
-renderProjects(projects, projectsContainer, 'h2');
-renderPieChart(projects);
+// searchInput.addEventListener('input', updateFilters);
+
+// renderProjects(projects, projectsContainer, 'h2');
+// renderPieChart(projects);
