@@ -781,19 +781,12 @@ img {
   background: var(--color);
 }
 
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
 path {
   transition: 300ms;
-  cursor: pointer;
-}
-
-.selected {
-  --color: oklch(60% 45% 0) !important;
-}
-
-.selected:is(path) {
-  fill: var(--color);
-}
-
-svg:has(path:hover) path:not(:hover) {
-  opacity: 0.5;
 }

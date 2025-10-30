@@ -38,20 +38,19 @@ let searchInput = document.querySelector('.searchBar');
 const projectsContainer = document.querySelector('.projects');
 function renderPieChart(projectsGiven) {
   // 🔹 1. Aggregate project counts by year
-  let rolledData = d3.rollups(
+  let newRolledData = d3.rollups(
     projectsGiven,
     (v) => v.length,
     (d) => d.year
   );
 
-  let data = rolledData.map(([year, count]) => ({
-    label: year,
-    value: count,
-  }));
+  let newData = newRolledData.map(([year, count]) => {
+    return { label: year, value: count };
+  });
 
-  let sliceGenerator = d3.pie().value((d) => d.value);
-  let arcData = sliceGenerator(data);
-  let arcGenerator = d3.arc().innerRadius(0).outerRadius(50);
+  let newSliceGenerator = d3.pie().value((d) => d.value);
+  let newArcData = newSliceGenerator(data);
+  let newArcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
@@ -62,59 +61,32 @@ function renderPieChart(projectsGiven) {
   legend.selectAll('*').remove();
 
   // Draw slices
-  arcData.forEach((d, i) => {
-    svg.append('path')
-      .attr('d', arcGenerator(d))
-      .attr('fill', colors(i))
-      .style('cursor', 'pointer')
-      .classed('selected', selectedIndex === i) // highlight if selected
-      .on('click', () => {
-        selectedIndex = selectedIndex === i ? -1 : i; // toggle selection
-        updateFilters(); // call function to apply filters and update chart
-      });
-  });
-
-  // Draw legend items
-  data.forEach((d, i) => {
-    legend.selectAll('li')
-    .data(data)
-    .join('li')
-    .text(d => `${d.label} (${d.value})`)
-    .classed('selected', d => selectedIndex === d.label)
-    .on('click', (event, d) => {
-      selectedIndex = selectedIndex === d.label ? null : d.label;
+  svg
+    .selectAll('path')
+    .data(newArcData)
+    .join('path')
+    .attr('d', newArcGenerator)
+    .attr('fill', (_, i) => colors(i))
+    .style('cursor', 'pointer')
+    .classed('selected', (_, i) => selectedIndex == i)
+    .on('click', (_, d, i) => {
+      const idx = newArcData.findIndex(a => a.data.label == d.data.label);
+      selectedIndex = selectedIndex === idx ? -1 : idx;
       updateFilters();
     });
-  });
-}
+    
 
-function updateFilters() {
-  // Filter projects by selected year
-  let rolledData = d3.rollups(
-    projects,
-    (v) => v.length,
-    (d) => d.year
-  );
-
-  let filteredByYear = selectedIndex === -1
-    ? projects
-    : projects.filter(p => p.year === rolledData[selectedIndex][0]);
-
-  // Step 2: Filter by search query
-  let query = searchInput.value.toLowerCase();
-  let finalFiltered = filteredByYear.filter(project =>
-    Object.values(project).join('\n').toLowerCase().includes(query)
-  );
-
-  // Step 3: Render projects and pie chart
-  renderProjects(finalFiltered, projectsContainer, 'h2');
-  renderPieChart(finalFiltered);
-}
-
-searchInput.addEventListener('input', updateFilters);
-
-renderProjects(projects, projectsContainer, 'h2');
-renderPieChart(projects);
-
-
-loadProjects();
+  // Draw legend items
+  legend
+    .selectAll('li')
+    .data(newData)
+    .join('li')
+    .text((d) => `${d.label} (${d.value})`)
+    .classed('selected', (_, i) => selectedIndex === i)
+    .on('click', (_, d) => {
+      const idx = newData.findIndex(a => a.label === d.label);
+      selectedIndex = selectedIndex === idx ? -1 : idx;
+      updateFilters();
+    });
+  }
+  loadProjects();
