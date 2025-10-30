@@ -49,7 +49,7 @@ function renderPieChart(projectsGiven) {
   });
 
   let newSliceGenerator = d3.pie().value((d) => d.value);
-  let newArcData = newSliceGenerator(data);
+  let newArcData = newSliceGenerator(newData);
   let newArcGenerator = d3.arc().innerRadius(0).outerRadius(50);
 
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
