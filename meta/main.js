@@ -104,15 +104,15 @@ function renderScatterPlot(data, commits) {
   const xScale = d3
     .scaleTime()
     .domain(d3.extent(commits, (d) => d.datetime))
-    .range([0, width])
+    .range([usableArea.left, usableArea.right])
     .nice();
     
-  const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
+  const yScale = d3.scaleLinear().domain([0, 24]).range([usableArea.bottom, usableArea.top]);
   const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
   const rScale = d3.scaleSqrt()
                 .domain([minLines, maxLines])
                 .range([3, 20]);
-
+  /// add gridlines before axes
   const gridLines = svg
     .append('g')
     .attr('class', 'gridlines')
@@ -162,7 +162,7 @@ function renderScatterPlot(data, commits) {
     updateTooltipVisibility(false);
   });
 
-  svg.call(d3.brush().on('start brush end', ));
+  svg.call(d3.brush().on('start brush end', brushed));
   svg.selectAll('.dots, .overlay ~ *').raise();
 }
 
