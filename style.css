@@ -991,34 +991,15 @@ svg {
   border-radius: 4px;
 }
 
+/* Dark mode gridlines */
+html[data-theme="dark"] .gridlines line {
+  stroke: #555;
+  stroke-opacity: 0.3;
+}
+
 @media (prefers-color-scheme: dark) {
-  .gridlines line {
-    stroke: #404040;
-    stroke-opacity: 0.5;
-  }
-  
-  /* Optional: Adjust axis text color for better visibility */
-  .axis text {
-    fill: #e0e0e0;
-  }
-  
-  .axis path,
-  .axis line {
-    stroke: #808080;
-  }
-  
-  /* Optional: Adjust SVG background */
-  svg {
-    background: #1a1a1a;
-  }
-  
-  /* Optional: Adjust circle colors for dark mode */
-  circle {
-    fill: #64b5f6; /* Lighter blue for better contrast */
-  }
-  
-  circle.selected {
-    fill: #ff6b6b;
-    stroke: #ff9999;
+  html:not([data-theme]) .gridlines line {
+    stroke: #555;
+    stroke-opacity: 0.3;
   }
 }
