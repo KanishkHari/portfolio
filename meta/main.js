@@ -63,7 +63,7 @@ function renderCommitInfo(data, commits) {
   dl.append('dd').text(Math.round(avgLines));
   // work by time period
   const workByPeriod = d3.rollups(
-    allLines,
+    data,
     v => v.length,
     d => {
       const hour = commits.find(c => c.lines.includes(d))?.datetime.getHours() || 0;
