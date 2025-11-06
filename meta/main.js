@@ -99,6 +99,11 @@ function renderScatterPlot(data, commits) {
     
   const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
   
+
+  const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
+  const rScale = d3.scaleSqrt()
+                .domain([minLines, maxLines])
+                .range([3, 20]);
   const dots = svg.append('g').attr('class', 'dots');
   dots
     .selectAll('circle')
