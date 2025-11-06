@@ -123,6 +123,16 @@ const usableArea = {
 xScale.range([usableArea.left, usableArea.right]);
 yScale.range([usableArea.bottom, usableArea.top]);
 
+
+// add gridlines before axes
+
+const gridLines = svg
+  append('g')
+  .attr('class', 'gridlines')
+  .attr('transform', `translate(${usableArea.left}, 0)`);
+
+gridLines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
+
 // create axes
 const xAxis = d3.axisBottom(xScale)
 const yAxis = d3
