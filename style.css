@@ -848,7 +848,7 @@ html[data-theme="dark"] .legend {
   border-color: #555;
 }
 
-.gridlines lines {
+.gridlines line {
   stroke: #e0e0e0;
   stroke-opacity: 0.7;
 }
@@ -991,7 +991,7 @@ svg {
   border-radius: 4px;
 }
 
-body.dark-mode .gridlines line,
+/* body.dark-mode .gridlines line,
 html.dark-mode .gridlines line {
   stroke: #404040;
   stroke-opacity: 0.5;
@@ -1023,4 +1023,4 @@ body.dark-mode circle.selected,
 html.dark-mode circle.selected {
   fill: #ff6b6b;
   stroke: #ff9999;
-}
+} */
