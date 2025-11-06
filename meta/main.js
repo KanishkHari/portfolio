@@ -125,7 +125,7 @@ function renderScatterPlot(data, commits) {
 
 
 // add gridlines before axes
-
+  
   const gridLines = svg
     .append('g')
     .attr('class', 'gridlines')

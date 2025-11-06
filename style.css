@@ -847,3 +847,8 @@ html[data-theme="dark"] .searchBar {
 html[data-theme="dark"] .legend {
   border-color: #555;
 }
+
+.gridlines lines {
+  stroke: #e0e0e0;
+  stroke-opacity: 0.7;
+}
