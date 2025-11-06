@@ -84,6 +84,16 @@ function renderScatterPlot(data, commits) {
   // Put all the JS code of Steps inside this function
   const width = 1000;
   const height = 600;
+  const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+//usableArea
+  const usableArea = {
+    top: margin.top,
+    right: width - margin.right,
+    bottom: height - margin.bottom,
+    left: margin.left,
+    width: width - margin.left - margin.right,
+    height: height - margin.top - margin.bottom,
+  };
 
   const svg = d3
     .select('#chart')
@@ -150,24 +160,6 @@ function renderScatterPlot(data, commits) {
     d3.select(event.currentTarget).style('fill-opacity', 0.7);
     updateTooltipVisibility(false);
   });
-    
-  const margin = { top: 10, right: 10, bottom: 30, left: 20 };
-//usableArea
-  const usableArea = {
-    top: margin.top,
-    right: width - margin.right,
-    bottom: height - margin.bottom,
-    left: margin.left,
-    width: width - margin.left - margin.right,
-    height: height - margin.top - margin.bottom,
-  };
-  
-  xScale.range([usableArea.left, usableArea.right]);
-  yScale.range([usableArea.bottom, usableArea.top]);
-
-
-// add gridlines before axes
-
   
 }
 
@@ -179,7 +171,7 @@ function renderTooltipContent(commit) {
   if (Object.keys(commit).length === 0) return;
 
   link.href = commit.url;
-  link.textContet = commit.id;
+  link.textContent = commit.id;
   date.textContent = commit.datetime?.toLocaleString('en', {
     dateStyle: 'full',
   });
