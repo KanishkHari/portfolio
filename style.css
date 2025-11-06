@@ -871,6 +871,34 @@ html[data-theme="dark"] .gridlines line {
 .axis text {
     font-size: 12px;
 }
+
+.axis path,
+.axis line {
+  stroke: #555; /* medium gray gridlines */
+}
+
+/* Dark Mode */
+html[data-theme="dark"] .axis text {
+  fill: #f3f3f3; /* light text for dark background */
+}
+
+html[data-theme="dark"] .axis path,
+html[data-theme="dark"] .axis line {
+  stroke: #aaa; /* softer light gray lines */
+}
+
+/* System preference fallback */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .axis text {
+    fill: #f3f3f3;
+  }
+
+  html:not([data-theme]) .axis path,
+  html:not([data-theme]) .axis line {
+    stroke: #aaa;
+  }
+}
+
 dl.info {
   display: grid;
   grid-template-columns: auto 1fr;
