@@ -125,7 +125,7 @@ function renderScatterPlot(data, commits) {
 
 
 // add gridlines before axes
-  
+
   const gridLines = svg
     .append('g')
     .attr('class', 'gridlines')
@@ -151,6 +151,18 @@ function renderScatterPlot(data, commits) {
     .call(yAxis);
 }
 
+function renderTooltipContent(commit) {
+  const link = document.getElementById('commit-link');
+  const date = document.getElementById('commit-date');
+
+  if (Object.keys(commit).length === 0) return;
+
+  link.href = commit.url;
+  link.textContet = commit.id;
+  date.textContent = commit.datetime?.toLocaleString('en', {
+    dateStyle: 'full',
+  });
+}
 
 
 let data = await loadData();
