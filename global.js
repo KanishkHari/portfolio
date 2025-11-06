@@ -18,9 +18,10 @@ const BASE_PATH =
 const pages = [
   { url: "", title: "Home" },
   { url: "projects/", title: "Projects" },
+  { url: "Resume/", title: "Resume" },
   { url: "contact/", title: "Contact" },
   { url: "https://github.com/KanishkHari", title: "Github" },
-  { url: "Resume/", title: "Resume" },
+  { url: "meta/", title: "Meta"},
 ];
 
 // Create <nav> and add to top of <body>
