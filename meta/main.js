@@ -84,9 +84,8 @@ function renderScatterPlot(data, commits) {
   // Put all the JS code of Steps inside this function
   const width = 1000;
   const height = 600;
-}
 
-const svg = d3
+  const svg = d3
     .select('#chart')
     .append('svg')
     .attr('viewBox', `0 0 ${width} ${height}`)
@@ -100,6 +99,7 @@ const xScale = d3
 const yScale = d3.scaleLinear().domain([0, 24]).range([height, 0]);
 
 const dots = svg.append('g').attr('class', 'dots');
+
 dots
     .selectAll('circle')
     .data(commits)
@@ -149,6 +149,9 @@ svg
   .append('g')
   .attr('transform', `translate(${usableArea.left}, 0)`)
   .call(yAxis);
+}
+
+
 
 let data = await loadData();
 let commits = processCommits(data);
