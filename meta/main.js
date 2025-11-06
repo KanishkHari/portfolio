@@ -20,7 +20,7 @@ function processCommits(data) {
       let { author, date, time, timezone, datetime } = first;
       let ret = {
         id: commit,
-        url: 'https://github.com/vis-society/lab-7/commit/' + commit,
+        url: 'https://github.com/kanishkhari/portfolio/commit/' + commit,
         author,
         date,
         time,
@@ -32,6 +32,9 @@ function processCommits(data) {
 
       Object.defineProperty(ret, 'lines', {
         value: lines,
+        configurable: true,
+        enumerable: false,
+        writable: true,
         // What other options do we need to set?
         // Hint: look up configurable, writable, and enumerable
       });
