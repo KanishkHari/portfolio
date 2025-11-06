@@ -252,8 +252,8 @@ function renderLanguageBreakdown(selection) {
     container.innerHTML = '';
     return;
   }
-  //const requiredCommits = selectedCommits.length ? selectedCommits : commits;
-  const lines = selectedCommits.flatMap((d) => d.lines);
+  const requiredCommits = selectedCommits.length ? selectedCommits : commits;
+  const lines = requiredCommits.flatMap((d) => d.lines);
 
   // Use d3.rollup to count lines per language
   const breakdown = d3.rollup(
@@ -268,13 +268,11 @@ function renderLanguageBreakdown(selection) {
   for (const [language, count] of breakdown) {
     const proportion = count / lines.length;
     const formatted = d3.format('.1~%')(proportion);
-    const dt = document.createElement('dt');
-    dt.textContent = language;
-    container.appendChild(dt);
-    
-    const dd = document.createElement('dd');
-    dd.textContent = `${count} lines (${formatted})`;
-    container.appendChild(dd);
+
+    container.innerHTML += `
+      <dt>${language}</dt>
+      <dd>${count} lines (${formatted})</dd>
+    `;
   }
 }
 
