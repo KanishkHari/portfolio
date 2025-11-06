@@ -43,7 +43,45 @@ function processCommits(data) {
     });
 }
 
+function renderCommitInfo(data, commits) {
+  // create dl element
+  const dl = d3.select('#stats').append('dl').attr('class', 'stats');
+  // add total LOC
+  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
+  dl.append('dd').text(data.length);
+
+  // add total commits
+  dl.append('dt').text('Total Commits');
+  dl.append('dd').text(commits.length);
+// num files
+  const files = d3.group(data, d => d.file);
+  dl.append('dt').text('Number of Files');
+  dl.append('dd').text(files.size);
+  // avg lines per commit
+  const avgLines = d3.mean(commits, d => d.totalLines);
+  dl.append('dt').text('Avg Lines per Commit');
+  dl.append('dd').text(Math.round(avgLines));
+  // work by time period
+  const workByPeriod = d3.rollups(
+    allLines,
+    v => v.length,
+    d => {
+      const hour = commits.find(c => c.lines.includes(d))?.datetime.getHours() || 0;
+      if (hour < 6) return 'Night';
+      if (hour < 12) return 'Morning';
+      if (hour < 18) return 'Afternoon';
+      return 'Evening';
+    }
+  );
+  // work by longest period
+  const maxPeriod = d3.greatest(workByPeriod, d => d[1]);
+  dl.append('dt').text('Most Active Period');
+  dl.append('dd').text(maxPeriod ? maxPeriod[0] : 'N/A');
+
+}
+
 
 let data = await loadData();
 let commits = processCommits(data);
-console.log(commits);
+
+renderCommitInfo(data, commits);
