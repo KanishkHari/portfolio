@@ -1,4 +1,8 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+
+// Declare scales and commits at module level so they're accessible to all functions
+let xScale, yScale, commits;
+
 async function loadData() {
   const data = await d3.csv('loc.csv', (row) => ({
     ...row,
@@ -10,7 +14,6 @@ async function loadData() {
   }));
   return data;
 }
-
 
 function processCommits(data) {
   return d3
@@ -35,8 +38,6 @@ function processCommits(data) {
         configurable: true,
         enumerable: false,
         writable: true,
-        // What other options do we need to set?
-        // Hint: look up configurable, writable, and enumerable
       });
 
       return ret;
@@ -53,14 +54,17 @@ function renderCommitInfo(data, commits) {
   // add total commits
   dl.append('dt').text('Total Commits');
   dl.append('dd').text(commits.length);
-// num files
+  
+  // num files
   const files = d3.group(data, (d) => d.file);
   dl.append('dt').text('Number of Files');
   dl.append('dd').text(files.size);
+  
   // avg lines per commit
   const avgLines = d3.mean(commits, (d) => d.totalLines);
   dl.append('dt').text('Avg Lines per Commit');
   dl.append('dd').text(Math.round(avgLines));
+  
   // work by time period
   const workByPeriod = d3.rollups(
     data,
@@ -73,19 +77,19 @@ function renderCommitInfo(data, commits) {
       return 'Evening';
     }
   );
+  
   // work by longest period
   const maxPeriod = d3.greatest(workByPeriod, d => d[1]);
   dl.append('dt').text('Most Active Period');
   dl.append('dd').text(maxPeriod ? maxPeriod[0] : 'N/A');
-
 }
 
 function renderScatterPlot(data, commits) {
-  // Put all the JS code of Steps inside this function
   const width = 1000;
   const height = 600;
-  const margin = { top: 10, right: 10, bottom: 30, left: 20 };
-//usableArea
+  const margin = { top: 10, right: 10, bottom: 30, left: 50 };
+  
+  // usableArea
   const usableArea = {
     top: margin.top,
     right: width - margin.right,
@@ -100,19 +104,25 @@ function renderScatterPlot(data, commits) {
     .append('svg')
     .attr('viewBox', `0 0 ${width} ${height}`)
     .style('overflow', 'visible');
-// create xScale and yScale
-  const xScale = d3
+  
+  // create xScale and yScale - UPDATE RANGES TO USE USABLE AREA
+  xScale = d3
     .scaleTime()
     .domain(d3.extent(commits, (d) => d.datetime))
     .range([usableArea.left, usableArea.right])
     .nice();
     
-  const yScale = d3.scaleLinear().domain([0, 24]).range([usableArea.bottom, usableArea.top]);
+  yScale = d3
+    .scaleLinear()
+    .domain([0, 24])
+    .range([usableArea.bottom, usableArea.top]);
+    
   const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
   const rScale = d3.scaleSqrt()
-                .domain([minLines, maxLines])
-                .range([3, 20]);
-  /// add gridlines before axes
+    .domain([minLines, maxLines])
+    .range([3, 20]);
+
+  // Add gridlines BEFORE axes
   const gridLines = svg
     .append('g')
     .attr('class', 'gridlines')
@@ -120,20 +130,23 @@ function renderScatterPlot(data, commits) {
 
   gridLines.call(d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width));
 
-// create axes
-  const xAxis = d3.axisBottom(xScale)
+  // create axes
+  const xAxis = d3.axisBottom(xScale);
   const yAxis = d3
     .axisLeft(yScale)
     .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
 
-// add X axis
+  // add X axis
   svg
     .append('g')
+    .attr('class', 'axis')
     .attr('transform', `translate(0, ${usableArea.bottom})`)
     .call(xAxis);
+    
   // add y axis
   svg
     .append('g')
+    .attr('class', 'axis')
     .attr('transform', `translate(${usableArea.left}, 0)`)
     .call(yAxis);
 
@@ -155,17 +168,16 @@ function renderScatterPlot(data, commits) {
       renderTooltipContent(commit);
       updateTooltipVisibility(true);
       updateTooltipPosition(event);
-  })
-  .on('mouseleave', (event) => {
-    // TODO: Hide the tooltip
-    d3.select(event.currentTarget).style('fill-opacity', 0.7);
-    updateTooltipVisibility(false);
-  });
+    })
+    .on('mouseleave', (event) => {
+      d3.select(event.currentTarget).style('fill-opacity', 0.7);
+      updateTooltipVisibility(false);
+    });
 
+  // FIXED: Added brushed function to the event handler
   svg.call(d3.brush().on('start brush end', brushed));
   svg.selectAll('.dots, .overlay ~ *').raise();
 }
-
 
 function renderTooltipContent(commit) {
   const link = document.getElementById('commit-link');
@@ -207,6 +219,7 @@ function isCommitSelected(selection, commit) {
   
   return cx >= x0 && cx <= x1 && cy >= y0 && cy <= y1;
 }
+
 function brushed(event) {
   const selection = event.selection;
   d3.selectAll('circle').classed('selected', (d) =>
@@ -215,7 +228,6 @@ function brushed(event) {
   renderSelectionCount(selection);
   renderLanguageBreakdown(selection);
 }
-
 
 function renderSelectionCount(selection) {
   const selectedCommits = selection
@@ -258,16 +270,15 @@ function renderLanguageBreakdown(selection) {
     const formatted = d3.format('.1~%')(proportion);
 
     container.innerHTML += `
-            <dt>${language}</dt>
-            <dd>${count} lines (${formatted})</dd>
-        `;
+      <dt>${language}</dt>
+      <dd>${count} lines (${formatted})</dd>
+    `;
   }
 }
 
-
-
+// Load data and render
 let data = await loadData();
-let commits = processCommits(data);
+commits = processCommits(data);
 
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
