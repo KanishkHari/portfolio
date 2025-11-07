@@ -868,17 +868,32 @@ html[data-theme="dark"] .gridlines line {
     stroke: none;
 }
         
-.axis text {
-    font-size: 12px;
+/* Default axis + tick color */
+.axis path,
+.axis line {
+  stroke: #333;
 }
 
-/* Dark Mode */
+.axis text {
+  fill: #333;
+}
+
+/* Dark mode axis + tick color */
+html[data-theme="dark"] .axis path,
+html[data-theme="dark"] .axis line {
+  stroke: #aaa;
+}
+
 html[data-theme="dark"] .axis text {
-  fill: #f3f3f3; /* light text for dark background */
+  fill: #f3f3f3;
 }
 
 /* System preference fallback */
 @media (prefers-color-scheme: dark) {
+  html:not([data-theme]) .axis path,
+  html:not([data-theme]) .axis line {
+    stroke: #aaa;
+  }
   html:not([data-theme]) .axis text {
     fill: #f3f3f3;
   }
@@ -921,7 +936,23 @@ dl.info dd {
   z-index: 1000;
   transition-duration: 500ms;
   transition-property: opacity, visibility;
+  backdrop-filter: blur(10px);
+  transition: 300ms background-color, 300ms color;
 }
+/* Dark mode tooltip */
+html[data-theme="dark"] .tooltip {
+  background: rgba(20, 20, 20, 0.85);
+  color: #f3f3f3;
+}
+
+html[data-theme="dark"] .tooltip dt {
+  color: #b78aff;
+}
+
+html[data-theme="dark"] .tooltip a {
+  color: #8ab4f8;
+}
+
 .tooltip[hidden]:not(:hover, :focus-within) {
     opacity: 0;
     visibility: hidden;
@@ -1005,14 +1036,32 @@ circle.selected {
 
 #chart {
   margin: 30px 0;
-  background: white;
+  background: var(--chart-bg);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-        
+
 svg {
-  background: #fafbfc;
+  background: var(--svg-bg);
   border-radius: 4px;
+}
+
+/* Theme variables */
+html[data-theme="light"] {
+  --chart-bg: white;
+  --svg-bg: #fafbfc;
+}
+
+html[data-theme="dark"] {
+  --chart-bg: #1a1a1a;
+  --svg-bg: #181818;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    --chart-bg: #1a1a1a;
+    --svg-bg: #181818;
+  }
 }
 
