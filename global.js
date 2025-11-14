@@ -133,15 +133,8 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
       ? `<h3><a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title}</a></h3>`
       : `<h3>${project.title}</h3>`;
 
-    const tagsHTML = project.tags 
-      ? `<div class="tags">
-          ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-         </div>`
-      : '';
-
     article.innerHTML = `
       ${titleHTML}
-      ${tagsHTML}
       <img src="${project.image}" alt="${project.title}">
       <p>${project.description}</p>
     `;
