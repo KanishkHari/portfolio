@@ -120,7 +120,6 @@ export async function fetchJSON(url) {
 // lab 4 - step 1.4
 // renderProjects function
 export function renderProjects(project, containerElement, headingLevel = 'h2') {
-  // Your code will go here
   containerElement.innerHTML = '';
   if (project.length === 0) {
     containerElement.innerHTML = '<p>No projects available.</p>';
@@ -128,11 +127,24 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
   }
   project.forEach((project) => {
     const article = document.createElement('article');
+    
+    // Check if project has a URL
+    const titleHTML = project.url 
+      ? `<h3><a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.title}</a></h3>`
+      : `<h3>${project.title}</h3>`;
+
+    const tagsHTML = project.tags 
+      ? `<div class="tags">
+          ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+         </div>`
+      : '';
+
     article.innerHTML = `
-    <h3>${project.title}</h3>
-    <img src="${project.image}" alt="${project.title}">
-    <p>${project.description}</p>
-`;
+      ${titleHTML}
+      ${tagsHTML}
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+    `;
 
     containerElement.appendChild(article);
   });
