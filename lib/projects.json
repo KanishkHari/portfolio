@@ -14,7 +14,8 @@
   {
     "title": "Bridge Collapse Prediction",
     "year": "2024",
-    "image": "../images/bridge.jpg",
+    "image": "../images/CDR.png",
+    "url": "https://github.com/socaldatascience/project-2024-team1",
     "description": "Developed a model to predict bridge collapse risks after earthquakes using machine learning."
   },
   {
@@ -22,7 +23,6 @@
     "year": "2025",
     "image": "../images/bike_traffic.png",
     "url": "https://kanishkhari.github.io/bike_traffic/",
-    "tags": ["D3.js", "HTML", "CSS", "Mapbox", "JavaScript"],
     "description": "Built an interactive dashboard using D3.js to visualize bike and vehicle traffic in the Boston and Cambridge areas."
   },
   {
@@ -36,7 +36,6 @@
     "year": "2025",
     "image": "../images/recipes_reviews.png",
     "url": "https://kanishkhari.github.io/Recipes-Reviews/",
-    "tags": ["Python", "Sci-kit Learn", "Pandas", "Numpy", "Regression"],
     "description": "Analyzed 80,000+ recipes and built a model to recommend personalized recipe options."
   },
 
