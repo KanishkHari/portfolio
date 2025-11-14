@@ -119,23 +119,73 @@ export async function fetchJSON(url) {
 
 // lab 4 - step 1.4
 // renderProjects function
-export function renderProjects(project, containerElement, headingLevel = 'h2') {
-  // Your code will go here
-  containerElement.innerHTML = '';
-  if (project.length === 0) {
-    containerElement.innerHTML = '<p>No projects available.</p>';
-    return;
-  }
-  project.forEach((project) => {
-    const article = document.createElement('article');
-    article.innerHTML = `
-    <h3>${project.title}</h3>
-    <img src="${project.image}" alt="${project.title}">
-    <p>${project.description}</p>
-`;
+export function renderProject(project) {
+  const projectCard = document.createElement("div");
+  projectCard.classList.add("project-card");
 
-    containerElement.appendChild(article);
-  });
+  // Create wrapper (link if URL exists, otherwise div)
+  let wrapper;
+  if (project.url) {
+    wrapper = document.createElement("a");
+    wrapper.href = project.url;
+    wrapper.target = "_blank";
+    wrapper.rel = "noopener noreferrer";
+    wrapper.classList.add("project-link");
+  } else {
+    wrapper = document.createElement("div");
+  }
+
+  // Project image
+  const img = document.createElement("img");
+  img.src = project.image;
+  img.alt = project.title;
+
+  // Title
+  const title = document.createElement("h3");
+  title.textContent = project.title.replace(/-/g, " ");
+
+  // Description
+  const description = document.createElement("p");
+  description.textContent = project.description;
+
+  // Tags (if they exist)
+  let tagsContainer;
+  if (project.tags && project.tags.length > 0) {
+    tagsContainer = document.createElement("div");
+    tagsContainer.classList.add("tags");
+    
+    project.tags.forEach(tag => {
+      const tagSpan = document.createElement("span");
+      tagSpan.classList.add("tag");
+      tagSpan.textContent = tag;
+      tagsContainer.appendChild(tagSpan);
+    });
+  }
+
+  // Year (if it exists)
+  let year;
+  if (project.year) {
+    year = document.createElement("p");
+    year.textContent = `Year: ${project.year}`;
+    year.classList.add("project-year");
+  }
+
+  // Assemble the card
+  wrapper.appendChild(img);
+  wrapper.appendChild(title);
+  wrapper.appendChild(description);
+  
+  if (tagsContainer) {
+    wrapper.appendChild(tagsContainer);
+  }
+  
+  if (year) {
+    wrapper.appendChild(year);
+  }
+
+  projectCard.appendChild(wrapper);
+
+  return projectCard;
 }
 
 export async function fetchGithubData(username) {
