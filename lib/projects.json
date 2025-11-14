@@ -34,7 +34,9 @@
   {
     "title": "Recipe Recommendation System",
     "year": "2025",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
+    "image": "../images/recipes_reviews.png",
+    "url": "https://kanishkhari.github.io/Recipes-Reviews/",
+    "tags": ["Python", "Sci-kit Learn", "Pandas", "Numpy", "Regression"],
     "description": "Analyzed 80,000+ recipes and built a model to recommend personalized recipe options."
   },
 
