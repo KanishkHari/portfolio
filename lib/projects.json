@@ -18,6 +18,14 @@
     "description": "Developed a model to predict bridge collapse risks after earthquakes using machine learning."
   },
   {
+    "title": "Boston Traffic Visualizer",
+    "year": "2025",
+    "image": "../images/bike_traffic.png",
+    "url": "https://kanishkhari.github.io/bike_traffic/",
+    "tags": ["D3.js", "HTML", "CSS", "Mapbox", "JavaScript"],
+    "description": "Built an interactive dashboard using D3.js to visualize bike and vehicle traffic in the Boston and Cambridge areas."
+  },
+  {
     "title": "AI Equation Solver/Grapher",
     "year": "2023",
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
@@ -29,14 +37,7 @@
     "image": "https://dsc106.com/labs/lab02/images/empty.svg",
     "description": "Analyzed 80,000+ recipes and built a model to recommend personalized recipe options."
   },
-  {
-    "title": "Boston Traffic Visualizer",
-    "year": "2025",
-    "image": "../images/bike_traffic.png",
-    "url": "https://kanishkhari.github.io/bike_traffic/",
-    "tags": ["D3.js", "HTML", "CSS", "Mapbox", "JavaScript"],
-    "description": "Built an interactive dashboard using D3.js to visualize bike and vehicle traffic in the Boston and Cambridge areas."
-  },
+
   {
     "title": "Earthquake Damage Visualizer",
     "year": "2022",
