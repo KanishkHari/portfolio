@@ -476,21 +476,27 @@ onTimeSliderChange();
 // Step 3.3: Scrollama setup
 function onStepEnter(response) {
   const commitDatetime = response.element.__data__.datetime;
-  
+
+  // Remove 'is-active' from all steps
+  d3.selectAll('#scatter-story .step').classed('is-active', false);
+
+  // Add 'is-active' to current step
+  d3.select(response.element).classed('is-active', true);
+
   // Filter commits up to this datetime
   filteredCommits = commits.filter((d) => d.datetime <= commitDatetime);
-  
+
   // Update the scatter plot
   updateScatterPlot(data, filteredCommits);
-  
+
   // Update the file display
   updateFileDisplay(filteredCommits);
-  
+
   // Update the slider to match
   commitMaxTime = commitDatetime;
   const sliderValue = timeScale(commitDatetime);
   slider.value = sliderValue;
-  
+
   // Update the time display
   document.getElementById("commit-time").textContent =
     commitMaxTime.toLocaleString("en", {

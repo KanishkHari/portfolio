@@ -869,9 +869,14 @@ dd {
     flex: 1;
   }
 }
-
-#scatter-story {
-  position: relative;
+#scatter-story .step {
+  border: 1px solid var(--color-border); /* border around the box */
+  border-radius: 8px;                   /* rounded corners */
+  padding: 1rem 1.2rem;                 /* inner spacing */
+  margin-bottom: 1rem;                  /* spacing between steps */
+  background-color: var(--chart-bg);    /* matches chart background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #scatter-plot {
@@ -880,4 +885,9 @@ dd {
   left: 0;
   bottom: auto;
   height: 50vh;
+}
+#scatter-story .step.is-active {
+  transform: translateX(5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border-color: var(--color-accent);
 }
