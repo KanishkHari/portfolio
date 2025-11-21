@@ -276,18 +276,44 @@ function renderLanguageBreakdown(selection) {
   }
 }
 
-let commitProgress = 100;
-let timeScale = d3
-  .scaleTime()
-  .domain([
-    d3.min(commits, (d) => d.datetime),
-    d3.max(commits, (d) => d.datetime),    
-  ])
-  .range([0, 100]);
-  let commitMaxTime = timeScale.invert(commitProgress);
 // Load data and render
 let data = await loadData();
 commits = processCommits(data);
 
 renderCommitInfo(data, commits);
 renderScatterPlot(data, commits);
+
+// Step 1.1 — Evolution timeline slider
+let commitProgress = 100;
+let timeScale;
+let commitMaxTime;
+
+function onTimeSliderChange() {
+  const slider = document.getElementById("commit-progress");
+
+  commitProgress = Number(slider.value);        // update percentage
+  commitMaxTime = timeScale.invert(commitProgress); 
+
+  document.getElementById("commit-time").textContent =
+    commitMaxTime.toLocaleString("en", {
+      dateStyle: "long",
+      timeStyle: "short",
+    });
+}
+
+// Build the time scale AFTER commits exist
+timeScale = d3.scaleTime()
+  .domain([
+    d3.min(commits, d => d.datetime),
+    d3.max(commits, d => d.datetime)
+  ])
+  .range([0, 100]);
+
+commitMaxTime = timeScale.invert(commitProgress);
+
+// Attach event listener
+const slider = document.getElementById("commit-progress");
+slider.addEventListener("input", onTimeSliderChange);
+
+// Initialize UI once on load
+onTimeSliderChange();
