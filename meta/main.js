@@ -396,9 +396,19 @@ function updateFileDisplay(filteredCommits) {
           div.append("dd");
         })
     );
+  
+    filesContainer.select("dt > code").html((d) => 
+    `${d.name}<small>${d.lines.length} lines</small>`
+  );
 
-  filesContainer.select("dt > code").text((d) => d.name);
-  filesContainer.select("dd").text((d) => `${d.lines.length} lines`);
+  // append one div for each line
+  filesContainer
+    .select('dd')
+    .selectAll('div')
+    .data((d) => d.lines)
+    .join('div')
+    .attr('class', 'loc');
+
 }
 
 // Build the time scale AFTER commits exist
