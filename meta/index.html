@@ -16,6 +16,17 @@
     <input type="range" id="commit-progress" min="0" max="100" value="0">
     <time id="commit-time"></time>
   </label>
+  <dl id="files">
+    <!-- we want the following structure for each file:
+  <div>
+    <dt>
+      <code>{file.name}</code>
+    </dt>
+    <dd>{file.lines.length} lines</dd>
+  </div>
+  -->
+</dl>
+  </dl>
   <div id="stats"></div>
 
   <h2>Commits by Time of day</h2>
