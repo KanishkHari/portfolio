@@ -984,6 +984,11 @@ circle {
   transition: 200ms;
   transform-origin: center;
   transform-box: fill-box;
+  transition: all 200ms;
+
+  @starting-style {
+    r: 0;
+  }
 }
 
 circle:hover {
