@@ -1069,3 +1069,7 @@ html[data-theme="dark"] {
     --svg-bg: #181818;
   }
 }
+
+#commit-progress {
+  width: 650px;   /* or any width you want: 500px, 700px, etc. */
+}
