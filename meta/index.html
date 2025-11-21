@@ -16,43 +16,40 @@
     <input type="range" id="commit-progress" min="0" max="100" value="0">
     <time id="commit-time"></time>
   </label>
-  <dl id="files">
-    <!-- we want the following structure for each file:
-  <div>
-    <dt>
-      <code>{file.name}</code>
-    </dt>
-    <dd>{file.lines.length} lines</dd>
-  </div>
-  -->
-</dl>
+  
   </dl>
   <div id="stats"></div>
 
   <h2>Commits by Time of day</h2>
-  <div id="chart"></div>
+  <div id="scrolly-1">
+    <div id="scatter-story">
+      <p>This is some filler text to demonstrate the scrollytelling layout. As you scroll through this section, the scatter plot on the right will remain sticky and visible.</p>
+      <p>We'll add more interactive story steps here in the next parts of the assignment.</p>
+  </div>
+  <div id="scatter-plot">
+    <div id="chart"></div>
 
-  <dl id="commit-tooltip" class="info tooltip" hidden>
-    <dt>Commit</dt>
-    <dd>
-      <a href="" id="commit-link" target="_blank"></a>
-    </dd>
-    <dt>Date</dt>
-    <dd id="commit-date"></dd>
-    <dt>Time</dt>
-    <dd id="commit-time"></dd>
-    <dt>Author</dt>
-    <dd id="commit-author"></dd>
-    <dt>Lines Edited</dt>
-    <dd id="commit-lines"></dd>
-  </dl>
+    <dl id="commit-tooltip" class="info tooltip" hidden>
+      <dt>Commit</dt>
+      <dd>
+        <a href="" id="commit-link" target="_blank"></a>
+      </dd>
+      <dt>Date</dt>
+      <dd id="commit-date"></dd>
+      <dt>Time</dt>
+      <dd id="commit-time"></dd>
+      <dt>Author</dt>
+      <dd id="commit-author"></dd>
+      <dt>Lines Edited</dt>
+      <dd id="commit-lines"></dd>
+    </dl>
 
-  <p id="selection-count">No commits selected</p>
+    <p id="selection-count">No commits selected</p>
 
-  <dl id="language-breakdown" class="stats"></dl>
+    <dl id="language-breakdown" class="stats"></dl>
 
 
-  
+  <dl id="files"></dl>
   <script type="module" src="../global.js"></script>
   <script type="module" src="main.js"></script>
 </body>

@@ -1,4 +1,6 @@
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import scrollama from 'https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm';
+
 
 // Declare scales and commits at module level so they're accessible to all functions
 let xScale, yScale, commits;
@@ -17,7 +19,7 @@ async function loadData() {
 }
 
 function processCommits(data) {
-  return d3
+  const commitsArray = d3
     .groups(data, (d) => d.commit)
     .map(([commit, lines]) => {
       let first = lines[0];
@@ -43,28 +45,33 @@ function processCommits(data) {
 
       return ret;
     });
+
+  // Sort commits by datetime for proper scrollytelling order
+  return commitsArray.sort((a, b) => a.datetime - b.datetime);
 }
 
 function renderCommitInfo(data, commits) {
   // create dl element
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
-  // add total LOC
-  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
-  dl.append('dd').text(data.length);
+  // Helper function to add a stat
+  const addStat = (label, value) => {
+    const div = dl.append('div');
+    div.append('dd').text(value);
+    div.append('dt').html(label);
+  };
+  /// add total LOC
+  addStat('Total <abbr title="Lines of code">LOC</abbr>', data.length);
 
   // add total commits
-  dl.append('dt').text('Total Commits');
-  dl.append('dd').text(commits.length);
+  addStat('Total Commits', commits.length);
   
   // num files
   const files = d3.group(data, (d) => d.file);
-  dl.append('dt').text('Number of Files');
-  dl.append('dd').text(files.size);
+  addStat('Number of Files', files.size);
   
   // avg lines per commit
   const avgLines = d3.mean(commits, (d) => d.totalLines);
-  dl.append('dt').text('Avg Lines per Commit');
-  dl.append('dd').text(Math.round(avgLines));
+  addStat('Avg Lines per Commit', Math.round(avgLines));
   
   // work by time period
   const workByPeriod = d3.rollups(
@@ -81,8 +88,7 @@ function renderCommitInfo(data, commits) {
   
   // work by longest period
   const maxPeriod = d3.greatest(workByPeriod, d => d[1]);
-  dl.append('dt').text('Most Active Period');
-  dl.append('dd').text(maxPeriod ? maxPeriod[0] : 'N/A');
+  addStat('Most Active Period', maxPeriod ? maxPeriod[0] : 'N/A');
 }
 
 function renderScatterPlot(data, commits) {
@@ -339,10 +345,16 @@ function renderLanguageBreakdown(selection) {
     const proportion = count / lines.length;
     const formatted = d3.format('.1~%')(proportion);
 
-    container.innerHTML += `
-      <dt>${language}</dt>
-      <dd>${count} lines (${formatted})</dd>
-    `;
+    const div = document.createElement('div');
+    const dd = document.createElement('dd');
+    const dt = document.createElement('dt');
+    
+    dd.textContent = count;
+    dt.textContent = `${language} (${formatted})`;
+    
+    div.appendChild(dd);
+    div.appendChild(dt);
+    container.appendChild(div);
   }
 }
 
@@ -418,6 +430,32 @@ function updateFileDisplay(filteredCommits) {
 
 }
 
+d3.select('#scatter-story')
+  .selectAll('.step')
+  .data(commits)
+  .join('div')
+  .attr('class', 'step')
+  .html(
+    (d, i) => `
+		On ${d.datetime.toLocaleString('en', {
+      dateStyle: 'full',
+      timeStyle: 'short',
+    })},
+		I made <a href="${d.url}" target="_blank">${
+      i > 0 ? 'another glorious commit' : 'my first commit, and it was glorious'
+    }</a>.
+		I edited ${d.totalLines} lines across ${
+      d3.rollups(
+        d.lines,
+        (D) => D.length,
+        (d) => d.file,
+      ).length
+    } files.
+		Then I looked over all I had made, and I saw that it was very good.
+	`,
+  );
+
+
 // Build the time scale AFTER commits exist
 timeScale = d3.scaleTime()
   .domain([
@@ -434,3 +472,37 @@ slider.addEventListener("input", onTimeSliderChange);
 
 // Initialize UI once on load
 onTimeSliderChange();
+
+// Step 3.3: Scrollama setup
+function onStepEnter(response) {
+  const commitDatetime = response.element.__data__.datetime;
+  
+  // Filter commits up to this datetime
+  filteredCommits = commits.filter((d) => d.datetime <= commitDatetime);
+  
+  // Update the scatter plot
+  updateScatterPlot(data, filteredCommits);
+  
+  // Update the file display
+  updateFileDisplay(filteredCommits);
+  
+  // Update the slider to match
+  commitMaxTime = commitDatetime;
+  const sliderValue = timeScale(commitDatetime);
+  slider.value = sliderValue;
+  
+  // Update the time display
+  document.getElementById("commit-time").textContent =
+    commitMaxTime.toLocaleString("en", {
+      dateStyle: "long",
+      timeStyle: "short",
+    });
+}
+
+const scroller = scrollama();
+scroller
+  .setup({
+    container: '#scrolly-1',
+    step: '#scrolly-1 .step',
+  })
+  .onStepEnter(onStepEnter);
