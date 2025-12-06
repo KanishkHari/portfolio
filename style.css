@@ -458,18 +458,22 @@ img {
 #profile-stats dl {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  text-align: center;
+  gap: 0.5rem 1rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 #profile-stats dt {
   font-weight: bold;
   grid-row: 1;
+  text-align: center;
 }
 
 #profile-stats dd {
   margin: 0;
   grid-row: 2;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 /* ========== Pie Chart Specific Styles ========== */
