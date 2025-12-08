@@ -906,3 +906,9 @@ dd {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   border-color: var(--color-accent);
 }
+
+/* Target the span specifically inside the title-row h3 */
+.title-row h3 span {
+    /* Removes the bolding inherited from the h3 tag */
+    font-weight: normal;
+}
