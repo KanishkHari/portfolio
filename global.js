@@ -1,5 +1,4 @@
 // global.js
-console.log("ITS ALIVE!");
 
 // ===== Helper =====
 function $$(selector, context = document) {
@@ -21,12 +20,19 @@ const pages = [
   { url: "Resume/", title: "Resume" },
   { url: "contact/", title: "Contact" },
   { url: "https://github.com/KanishkHari", title: "Github" },
-  { url: "meta/", title: "Meta"},
+  { url: "meta/", title: "About This Site"},
 ];
 
 // Create <nav> and add to top of <body>
 const nav = document.createElement("nav");
 document.body.prepend(nav);
+
+// Add brand link on the left
+const brand = document.createElement("a");
+brand.href = BASE_PATH;
+brand.textContent = "Kanishk Hari";
+brand.className = "nav-brand";
+nav.append(brand);
 
 // Build navigation links
 for (const p of pages) {

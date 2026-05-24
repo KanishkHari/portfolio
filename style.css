@@ -2,16 +2,16 @@
 :root {
   --color-accent: oklch(65.453% 0.25424 310.94);
   --color-border: oklch(64.559% 0.19149 257.011);
-  --color-button: oklch(47.559% 0.16141 142.403);
+  --color-button: oklch(45% 0.20 310);
 }
 
 html {
   accent-color: var(--color-accent);
-  font-family: system-ui, sans-serif;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 body {
-  font: 100%/1.5 system-ui;
+  font: 100%/1.5 'Inter', system-ui, sans-serif;
   max-width: 100ch;
   margin-inline: auto;
   padding: 1em;
@@ -56,15 +56,23 @@ nav {
 }
 
 nav a {
-  flex: 1;
+  flex: initial;
   text-align: center;
   text-decoration: none;
   color: inherit;
-  padding: 0.5em;
+  padding: 0.5em 1em;
   border-bottom: 0.4em solid transparent;
   transition: border-color 0.2s ease, background-color 0.2s ease;
   border-radius: 0.3em;
+  font-weight: 600;
+}
+
+nav a.nav-brand {
+  margin-right: auto;
   font-weight: 700;
+  font-size: 1.05em;
+  letter-spacing: -0.01em;
+  border-bottom-color: transparent !important;
 }
 
 nav a.current {
@@ -142,7 +150,7 @@ form button {
 }
 
 form button:hover {
-  background-color: oklch(65.171% 0.16026 147.502 / 0.844);
+  background-color: oklch(55% 0.22 310);
 }
 
 /* ========== Projects Grid ========== */
@@ -161,34 +169,42 @@ form button:hover {
   border: 1px solid;
   border-radius: 0.5em;
   padding: 1em;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 /* Project article themes */
 html[data-theme="light"] .projects article,
 html:not([data-theme]) .projects article {
-  border-color: #000;
-  background-color: oklch(87.261% 0.05137 236.693);
+  border-color: var(--color-border);
+  background-color: oklch(92% 0.03 240);
 }
 
 html[data-theme="dark"] .projects article {
-  border-color: #fff;
+  border-color: var(--color-border);
   background-color: oklch(25% 0.02 240);
 }
 
 @media (prefers-color-scheme: dark) {
   html:not([data-theme]) .projects article {
-    border-color: #fff;
+    border-color: var(--color-border);
     background-color: oklch(25% 0.02 240);
   }
 }
 
-.projects article h2 {
+.projects article h2,
+.projects article h3 {
   margin: 0;
 }
 
 .projects article img {
   width: 100%;
-  height: auto;
+  height: 180px;
+  object-fit: cover;
   display: block;
   border-radius: 0.3em;
 }
@@ -911,4 +927,103 @@ dd {
 .title-row h3 span {
     /* Removes the bolding inherited from the h3 tag */
     font-weight: normal;
+}
+
+/* ========== Hero Section ========== */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+  padding: 3rem 0 4rem;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-top: 0;
+  margin-bottom: 0.2em;
+}
+
+.hero-content > p {
+  margin: 0;
+  font-size: 1.05em;
+  max-width: 55ch;
+  opacity: 0.85;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.hero-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-accent);
+  margin-top: 0;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 600px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-photo {
+    margin: 0 auto;
+    order: -1;
+  }
+  .hero-content > p {
+    max-width: 100%;
+  }
+  .hero-cta {
+    justify-content: center;
+  }
+}
+
+/* ========== Buttons ========== */
+.btn {
+  display: inline-block;
+  padding: 0.65em 1.5em;
+  border-radius: 0.4em;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95em;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-button);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: oklch(55% 0.22 310);
+  color: white;
+}
+
+.btn-secondary {
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+  background-color: transparent;
+}
+
+.btn-secondary:hover {
+  background-color: color-mix(in oklch, var(--color-accent), transparent 88%);
+}
+
+html[data-theme="dark"] .btn-secondary,
+html[data-theme="dark"] .btn-secondary:hover {
+  text-decoration: none;
 }

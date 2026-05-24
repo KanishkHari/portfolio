@@ -4,27 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kanishk Hari: Personal Site and Portfolio</title>
-  <link rel = 'stylesheet' href = 'style.css' />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header id="site-header"></header>
-  <h1> Kanishk Hari</h1>
-  <p>I'm a 4th year Data Science student passionate in Machine Learning and Artificial Intelligence. I enjoy listening to music, watching TV shows, hiking, and doing physical activities in general.</p>
-  <img src="images/kanishk_professional_small.jpg" alt="A picture of me in a professional setting" />
 
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Kanishk Hari</h1>
+      <p>Data Science student at UC San Diego (graduating June 2026), focused on Machine Learning and AI. I've shipped production ML systems at Siloq and conducted NSF-funded research in earthquake prediction. Actively looking for full-time roles in data science and ML engineering.</p>
+      <div class="hero-cta">
+        <a href="projects/" class="btn btn-primary">View Projects</a>
+        <a href="Resume/" class="btn btn-secondary">Resume</a>
+      </div>
+    </div>
+    <img src="images/kanishk_professional_small.jpg" alt="Kanishk Hari" class="hero-photo" />
+  </section>
 
-  
   <h2>Latest Projects</h2>
   <div class="projects">
   <!-- Dynamically added content will appear here -->
   </div>
-  
+
   <section>
     <div id="profile-stats">
     <!-- GitHub stats will load here -->
     </div>
   </section>
-  
+
   <script type="module" src="global.js"></script>
   <script src="index.js" type="module" defer></script>
 </body>
