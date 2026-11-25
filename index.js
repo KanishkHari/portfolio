@@ -6,7 +6,7 @@ async function loadLatest() {
   renderProjects(latestProjects, projectsContainer, 'h2');
 
   // step 3 
-  const githubData = await fetchGithubData('kanishkhari');
+  const githubData = await fetchGithubData('KanishkHari');
   const profileStats = document.querySelector('#profile-stats');
 
   if (profileStats) {
