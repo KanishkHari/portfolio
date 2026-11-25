@@ -1,5 +1,23 @@
 [
   {
+    "title": "Autonomous Off-Road RC Car",
+    "year": "2026",
+    "image": "../images/placeholder.svg",
+    "description": "Built a LiDAR, stereo-camera and GNSS sensor-fusion pipeline on an NVIDIA Jetson with ROS2 and YOLO obstacle avoidance for a 1/5-scale autonomous off-road RC car."
+  },
+  {
+    "title": "Mathematical Reasoning LLM Competition",
+    "year": "2025",
+    "image": "../images/placeholder.svg",
+    "description": "Reached a 0.660 public Kaggle score with a vLLM pipeline around Qwen3-4B-Thinking, quantized with bitsandbytes to run on a single A100."
+  },
+  {
+    "title": "Stellarexam",
+    "year": "2025",
+    "image": "../images/placeholder.svg",
+    "description": "Go REST API serving a RAG pipeline on AWS EKS that generates practice questions and mock exams from students' own course material; users improved scores by 12% on average."
+  },
+  {
     "title": "Personal Portfolio Website",
     "year": "2025",
     "image": "../images/website_ss.jpeg",
@@ -27,53 +45,10 @@
     "description": "Built an interactive dashboard using D3.js to visualize bike and vehicle traffic in the Boston and Cambridge areas."
   },
   {
-    "title": "AI Equation Solver/Grapher",
-    "year": "2023",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Created an AI model that identifies mathematical equations from plotted graphs."
-  },
-  {
     "title": "Recipe Recommendation System",
     "year": "2025",
     "image": "../images/recipes_reviews.png",
     "url": "https://kanishkhari.github.io/Recipes-Reviews/",
     "description": "Analyzed 80,000+ recipes and built a model to recommend personalized recipe options."
-  },
-
-  {
-    "title": "Earthquake Damage Visualizer",
-    "year": "2022",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Visualized seismic damage data to highlight high-risk regions."
-  },
-  {
-    "title": "Stock Trend Predictor",
-    "year": "2023",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Trained a model to predict short-term stock movements using historical data."
-  },
-  {
-    "title": "Climate Change Impact Map",
-    "year": "2024",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Mapped global temperature and precipitation changes using Leaflet.js."
-  },
-  {
-    "title": "COVID-19 Data Tracker",
-    "year": "2023",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Built a dashboard to visualize infection and vaccination trends globally."
-  },
-  {
-    "title": "Movie Review Sentiment Analyzer",
-    "year": "2024",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Applied natural language processing to classify movie review sentiments."
-  },
-  {
-    "title": "Web Accessibility Audit Tool",
-    "year": "2025",
-    "image": "https://dsc106.com/labs/lab02/images/empty.svg",
-    "description": "Developed a Chrome extension that checks for common accessibility issues on webpages."
   }
 ]
