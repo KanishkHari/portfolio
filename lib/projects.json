@@ -3,18 +3,21 @@
     "title": "Autonomous Off-Road RC Car",
     "year": "2026",
     "image": "../images/placeholder.svg",
+    "url": "https://github.com/KanishkHari/1-fifthrobocar",
     "description": "Built a LiDAR, stereo-camera and GNSS sensor-fusion pipeline on an NVIDIA Jetson with ROS2 and YOLO obstacle avoidance for a 1/5-scale autonomous off-road RC car."
   },
   {
     "title": "Mathematical Reasoning LLM Competition",
-    "year": "2025",
-    "image": "../images/placeholder.svg",
+    "year": "2026",
+    "image": "../images/deep_learning.jpg",
+    "url": "https://github.com/KanishkHari/151B_SP26_Competition",
     "description": "Reached a 0.660 public Kaggle score with a vLLM pipeline around Qwen3-4B-Thinking, quantized with bitsandbytes to run on a single A100."
   },
   {
     "title": "Stellarexam",
     "year": "2025",
-    "image": "../images/placeholder.svg",
+    "image": "../images/stellarexam.jpg",
+    "url": "https://www.siloq.com",
     "description": "Go REST API serving a RAG pipeline on AWS EKS that generates practice questions and mock exams from students' own course material; users improved scores by 12% on average."
   },
   {
